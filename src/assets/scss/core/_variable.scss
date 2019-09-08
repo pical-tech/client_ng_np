@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'Lato-Regular';
+  src: url('/assets/fonts/Lato-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Lato-Medium';
+  src: url('/assets/fonts/Lato-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Lato-Semibold';
+  src: url('/assets/fonts/Lato-Semibold.ttf');
+}
+
+$lato-Regular: 'Lato-Regular';
+$lato-medium: 'Lato-Medium';
+$Lato-Semibold: 'Lato-Semibold';
+
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  padding: 0px;
+  margin: 0;
+  background-color: $white;
+  font-family: $lato-Regular;
+}
+img {
+  width: 100%;
+  height: 100%;
+}
+:focus {
+  outline: none !important;
+}
+a:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

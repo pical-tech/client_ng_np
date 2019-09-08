@@ -1,0 +1,51 @@
+@mixin linear-gradient-deg($degree, $color1, $color2) {
+  background: $color1; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(
+    $degree,
+    $color1,
+    $color2
+  ); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(
+    $degree,
+    $color1,
+    $color2
+  ); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(
+    $degree,
+    $color1,
+    $color2
+  ); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($degree, $color1, $color2); /* Standard syntax */
+}
+
+@mixin linear-gradient($dir, $color1, $color2, $color3) {
+  background-image: -webkit-linear-gradient($dir, $color1, $color2, $color3); /* For Safari 5.1 to 6.0 */
+  background-image: -o-linear-gradient($dir, $color1, $color2, $color3); /* For Opera 11.1 to 12.0 */
+  background-image: -moz-linear-gradient($dir, $color1, $color2, $color3); /* For Firefox 3.6 to 15 */
+  background-image: linear-gradient($dir, $color1, $color2, $color3); /* Standard syntax */
+}
+
+@mixin undo-bs-tab-focus() {
+  // clear out the tab-focus() from BS
+  &,
+  &:active,
+  &.active {
+    &:focus,
+    &.focus {
+      //@include tab-focus();
+      outline: 0;
+    }
+  }
+}
+
+@mixin box-shadow-color($color) {
+  box-shadow: 0 2px 6px rgba($color, $bmd-shadow-penumbra-opacity * 3);
+}
+@mixin box-shadow-default() {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+@mixin button-shadow-color($color) {
+  box-shadow: 0 14px 26px -12px rgba($color, $bmd-shadow-penumbra-opacity * 3),
+    0 4px 23px 0px rgba(0, 0, 0, $bmd-shadow-ambient-opacity),
+    0 8px 10px -5px rgba($color, $bmd-shadow-umbra-opacity);
+}

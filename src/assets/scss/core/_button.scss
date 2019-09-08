@@ -1,0 +1,37 @@
+.btn {
+  position: relative;
+  padding: 12px 30px;
+  margin: 0 auto;
+  min-width: auto;
+  font-size: 1rem; //  12px
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+  text-transform: capitalize;
+  vertical-align: middle;
+  letter-spacing: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: box-shadow, transform;
+  @include undo-bs-tab-focus();
+
+  &.btn-round {
+    border-radius: 30px;
+  }
+
+  &.btn-primary {
+    background: $brand-primary;
+    color: $white;
+
+    &:hover {
+      @include box-shadow-color($brand-primary);
+    }
+    &:focus {
+      background: $brand-primary;
+      @include box-shadow-color($brand-primary);
+    }
+  }
+}

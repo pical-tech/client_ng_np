@@ -1,0 +1,11 @@
+.form-control {
+  border: 1px solid $brand-primary;
+
+  &:focus {
+    color: inherit;
+    background-color: inherit;
+    border-color: inherit;
+    outline: 0;
+    box-shadow: none;
+  }
+}

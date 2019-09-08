@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col">
+    <div class="login">
+      <div class="row">
+        <div class="col-xl-5 col-md-5 col-sm-5 col-sm-12 p-0">
+          <div class="login-box-icon">
+            <div class="login-image">
+              <img src="/assets/images/login.png" alt="img" />
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-7 col-md-7 col-sm-7 col-sm-12">
+          <div class="row">
+            <div class="col">
+              <div class="login-box-nav">
+                <div class="back-icon">
+                  <span class="icon">
+                    <i class="left-arrow"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="login-box-logo">
+                <div class="logo-icon">
+                  <span class="logo">W</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 m-auto">
+              <div class="card login-box-card">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col">
+                      <div class="login-btn-box active">
+                        <button class="btn login-btn-text">
+                          <span>LOGIN</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="login-btn-box">
+                        <button class="btn login-btn-text"><span>REGISTER</span></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <div class="login-form">
+                        <form class="ngform" [formGroup]="loginForm" (ngSubmit)="userLogin()" #inputToFocus>
+                          <div class="row">
+                            <div class="col">
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': loginForm.controls['username'].value, 'is-invalid': !loginForm.controls['username'].valid}">
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control" formControlName="username" type="text"
+                                      placeholder="Email" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': loginForm.controls['password'].value, 'is-invalid': !loginForm.controls[ 'password' ].valid}">
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control" formControlName="password"
+                                      type="text" placeholder="password" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <div class="login-btn text-center">
+                                      <button class="btn btn-primary btn-round">LOGIN</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
