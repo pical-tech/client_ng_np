@@ -1,0 +1,32 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  @include box-shadow-default();
+  .navbar-brand {
+    padding: 0px;
+    margin: 0;
+    .logo {
+      @extend .brand-logo;
+    }
+  }
+  .navbar-collapse {
+    .navbar-nav {
+      .nav-item {
+        .nav-link {
+          padding: 0.5rem;
+          color: rgba(112, 112, 112, 1);
+          font-family: $Lato-Semibold;
+        }
+        &.active {
+          .nav-link {
+            color: $brand-primary;
+          }
+        }
+      }
+    }
+  }
+}

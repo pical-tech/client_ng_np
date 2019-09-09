@@ -1,0 +1,206 @@
+@media screen and (max-width: 1200px) {
+  .gift-registry {
+    .gift-banner {
+      .gift-image {
+        .gift-text {
+          font-size: 260%;
+          padding: 4px 80px;
+          top: 90px;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 991px) {
+}
+
+@media all and (min-width: 991px) {
+  .navbar {
+    &.navbar-expand-lg .navbar-collapse {
+      // flex-flow: row-reverse;
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .gift-registry {
+    .gift-banner {
+      .gift-image {
+        min-height: 80vh;
+        position: relative;
+        .gift-text {
+          font-size: 260%;
+          padding: 0px 80px;
+          top: 80px;
+        }
+      }
+    }
+    .git-step {
+      padding: 0px 20px;
+      .gift-card-container {
+        background: rgba(248, 248, 248, 1);
+        padding: 30px 0px;
+        .gift-desc {
+          height: 100%;
+          padding: 15px;
+          .gift-card {
+            padding: 10px;
+            padding-bottom: 70px;
+            .gift-card-desc {
+            }
+            .gift-card-icon {
+              width: 40%;
+            }
+          }
+          .card-number {
+            span {
+              font-size: 90px;
+            }
+            &.right-number {
+              span {
+                border-radius: 50% 0px 0px 50%;
+              }
+            }
+          }
+        }
+        .gift-icon {
+          width: 100%;
+        }
+        .card-gap {
+          padding-top: 40px;
+        }
+      }
+    }
+    .how-it-work-container {
+      .how-it-work-card {
+        .head-title {
+          span {
+            &::after {
+              width: 10%;
+              right: 5%;
+            }
+            &::before {
+              width: 10%;
+              left: 5%;
+            }
+          }
+        }
+        .how-body {
+          .how-it-list {
+            ul {
+              li {
+                .how-it-step {
+                  .how-it-icon {
+                    width: 200px;
+                    height: 200px;
+                  }
+                  .how-it-desc {
+                    width: 100%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 0.8rem;
+    line-height: normal;
+  }
+  .gift-registry {
+    .gift-banner {
+      .gift-image {
+        min-height: 40vh;
+        .gift-text {
+          font-size: 120%;
+          padding: 0px 20px;
+          top: 30px;
+        }
+        &::after {
+          background-size: 130vw 60vh;
+          background-position: -10vw -20vh;
+        }
+      }
+    }
+    .git-step {
+      padding: 0px 20px;
+      .gift-card-container {
+        background: rgba(248, 248, 248, 1);
+        padding: 30px 0px;
+        .gift-desc {
+          height: 100%;
+          padding: 15px;
+          .gift-card {
+            padding: 10px;
+            padding-bottom: 40px;
+            .gift-card-desc {
+            }
+            .gift-card-icon {
+              width: 40%;
+            }
+          }
+          .card-number {
+            span {
+              font-size: 90px;
+              padding: 50px 0px;
+            }
+          }
+        }
+        .gift-icon {
+          width: 100%;
+        }
+        .card-gap {
+          padding-top: 40px;
+          &.revers-flow {
+            flex-flow: column-reverse;
+          }
+        }
+      }
+    }
+    .how-it-work-container {
+      .how-it-work-card {
+        .head-title {
+          font-size: 30px;
+          span {
+            &::after {
+              content: none;
+            }
+            &::before {
+              content: none;
+            }
+          }
+        }
+        .how-body {
+          .how-it-list {
+            ul {
+              li {
+                .how-it-step {
+                  .how-it-icon {
+                    width: 120px;
+                    height: 120px;
+                    margin-top: 20px;
+                  }
+                  .how-it-desc {
+                    width: 100%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+}

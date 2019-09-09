@@ -1,21 +1,21 @@
 @font-face {
-  font-family: 'Lato-Regular';
-  src: url('/assets/fonts/Lato-Regular.ttf');
+  font-family: "Lato-Regular";
+  src: url("/assets/fonts/Lato-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Lato-Medium';
-  src: url('/assets/fonts/Lato-Medium.ttf');
+  font-family: "Lato-Medium";
+  src: url("/assets/fonts/Lato-Medium.ttf");
 }
 
 @font-face {
-  font-family: 'Lato-Semibold';
-  src: url('/assets/fonts/Lato-Semibold.ttf');
+  font-family: "Lato-Semibold";
+  src: url("/assets/fonts/Lato-Semibold.ttf");
 }
 
-$lato-Regular: 'Lato-Regular';
-$lato-medium: 'Lato-Medium';
-$Lato-Semibold: 'Lato-Semibold';
+$lato-Regular: "Lato-Regular";
+$lato-medium: "Lato-Medium";
+$Lato-Semibold: "Lato-Semibold";
 
 html * {
   -webkit-font-smoothing: antialiased;
@@ -39,4 +39,21 @@ a:focus,
 button:focus {
   outline: none !important;
   box-shadow: none !important;
+}
+.brand-logo {
+  cursor: default;
+  height: 40px;
+  display: block;
+  width: 40px;
+  background: $brand-primary;
+  border-radius: 50%;
+  position: relative;
+  color: $white;
+  text-align: center;
+  padding: 5px;
+  margin: 0 auto;
+  font-family: $Lato-Semibold;
+}
+.wrapper {
+  margin-top: 55px;
 }

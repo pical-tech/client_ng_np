@@ -70,18 +70,7 @@
       padding: 25px 20px;
       display: block;
       .logo {
-        cursor: default;
-        height: 40px;
-        display: block;
-        width: 40px;
-        background: $brand-primary;
-        border-radius: 50%;
-        position: relative;
-        color: $white;
-        text-align: center;
-        padding: 7px;
-        margin: 0 auto;
-        font-family: $Lato-Semibold;
+        @extend .brand-logo;
       }
     }
   }

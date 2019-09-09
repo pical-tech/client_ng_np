@@ -12,12 +12,18 @@ import { AdminlayoutComponent } from './layout/adminlayout/adminlayout.component
 import { UserlayoutComponent } from './layout/userlayout/userlayout.component';
 
 import { ToastrModule } from 'ngx-toastr';
+import { GiftRegistryComponent } from './components/gift-registry/gift-registry.component';
+import { AuthService } from './_auth/auth.service';
+import { AuthGuard } from './_auth/auth.guard';
+import { SharedModule } from './shared/shared.module';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AdminlayoutComponent,
     UserlayoutComponent,
+    GiftRegistryComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -27,9 +33,11 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    ToastrModule.forRoot()
+    RouterModule,
+    ToastrModule.forRoot(),
+    SharedModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
