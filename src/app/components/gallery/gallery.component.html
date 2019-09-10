@@ -1,0 +1,172 @@
+<div class="gallery">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="gallery-banner">
+          <div class="row">
+            <div class="col p-0">
+              <div class="gallery-image">
+                <div class="row m-0">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col-xl-7 col-lg-7 col-mg-6 col-sm-12">
+                        <div class="gallary-poster">
+                          <img src="./../../../assets/images/gallery-image.jpg">
+                        </div>
+                      </div>
+                      <div class="col-xl-5 col-lg-5 col-mg-6 col-sm-12">
+                        <div class="gallery-upload h-100">
+                          <div class="gallery-upload-card h-100">
+                            <div class="row">
+                              <div class="col">
+                                <div class="gallery-upload-card-header">
+                                  <label class="uploader">
+                                    <div class="uploader-icon">
+                                      <span>
+                                        <img src="./../../../assets/images/uploadericon.svg">
+                                      </span>
+                                    </div>
+                                    <div class="uploader-text">
+                                      <span>
+                                        Upload A Photo/Video
+                                      </span>
+                                    </div>
+                                    <input type="file" id="file" class="image-input">
+                                  </label>
+                                </div>
+                                <div class="gallery-upload-card-body">
+                                  <div class="row">
+                                    <div class="col">
+                                      <div class="form-group">
+                                        <select class="form-control">
+                                          <option>Select Ceremony</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col">
+                                      <div class="form-group form-check text-center">
+                                        <label class="form-check-radio">Photo
+                                          <input type="radio" checked="checked" name="radio">
+                                          <span class="checkmark"></span>
+                                        </label>
+                                        <span class="divider-line"></span>
+                                        <label class="form-check-radio">Video
+                                          <input type="radio" name="radio">
+                                          <span class="checkmark"></span>
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="gallery-upload-card-footer">
+                                  <div class="row">
+                                    <div class="col">
+                                      <div class="form-group text-center">
+                                        <button class="btn btn-primary btn-round">
+                                          Save
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="gallery-tab">
+          <div class="row">
+            <div class="col">
+              <ul class="nav nav-tabs row m-0">
+                <li *ngFor="let ceremony of ceremonyTitle; index as i" class="col">
+                  <a [ngClass]="{'active': getClassActive(ceremony)}" href="javascript:void(0)"
+                    (click)="openCeremony(ceremony)">{{ceremony.title}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="tab-content">
+                <div class="tab-pane fade in active show" role="tabpanel">
+                  <div class="gallery-list-head">
+                    <div class="row">
+                      <div class="col">
+                        <div class="gallery-list-option">
+                          <div class="row">
+                            <div class="col">
+                              <div class="gallery-switch">
+                                <span [ngClass]="{'active': photoSwitch}"
+                                  (click)="getPhotoDetails('Photo')">Photo</span>
+                                <span [ngClass]="{'active': !photoSwitch}"
+                                  (click)="getPhotoDetails('Video')">Video</span>
+                              </div>
+                              <div class="gallery-switch">
+                                <button class="btn-fat-icon">
+                                  <img src="./../../../assets/images/delete.svg">
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="gallery-list-body">
+                    <div class="row">
+                      <div *ngFor="let item of galleryListType; index as i" class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="gallery-card">
+                          <div class="gallery-card-body d-flex align-items-center">
+                            <div class="gallery-thumbnil">
+                              <img [src]="item.medea_url">
+                            </div>
+                            <div class="blur-effect" [style.backgroundImage]="'url('+ item.medea_url +')'"></div>
+                          </div>
+                          <div class="gallery-card-footer">
+                            <div class="gallery-icon">
+                              <button class="btn-fat-icon">
+                                <img src="./../../../assets/images/delete.svg">
+                              </button>
+                              <button class="btn-fat-icon">
+                                <img src="./../../../assets/images/edit.svg">
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="ceremony2" class="tab-pane fade" role="tabpanel">
+                  <h3>Menu 1</h3>
+                  <p>Some content in menu 1.</p>
+                </div>
+                <div id="ceremony3" class="tab-pane fade" role="tabpanel">
+                  <h3>Menu 2</h3>
+                  <p>Some content in menu 2.</p>
+                </div>
+                <div id="ceremony4" class="tab-pane fade" role="tabpanel">
+                  <h3>Menu 2</h3>
+                  <p>Some content in menu 2.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

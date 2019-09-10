@@ -17,6 +17,18 @@ import { AuthService } from './_auth/auth.service';
 import { AuthGuard } from './_auth/auth.guard';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { JwtModule, JWT_OPTIONS } from './../package';
+import { GalleryService } from './_services/gallery/gallery.service';
+
+export function jwtOptionsFactory() {
+  return {
+    tokenGetter: () => {
+      return (sessionStorage.getItem('token') ? sessionStorage.getItem('token') : null);
+    }
+  };
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +36,7 @@ import { RouterModule } from '@angular/router';
     AdminlayoutComponent,
     UserlayoutComponent,
     GiftRegistryComponent,
+    GalleryComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -35,9 +48,15 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     RouterModule,
     ToastrModule.forRoot(),
-    SharedModule
+    SharedModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+      }
+    }),
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, GalleryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,7 +22,7 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor(@Inject(JWT_OPTIONS) config: any, public jwtHelper: JwtHelperService) {
     this.tokenGetter = config.tokenGetter;
     this.headerName = 'Authorization';
-    this.authScheme = config.authScheme || config.authScheme === '' ? config.authScheme : 'Bearer ';
+    this.authScheme = 'Bearer ';
     this.whitelistedDomains = config.whitelistedDomains || [];
     this.blacklistedRoutes = config.blacklistedRoutes || [];
     this.throwNoTokenError = config.throwNoTokenError || false;
@@ -44,16 +44,12 @@ export class JwtInterceptor implements HttpInterceptor {
       throw new Error('Could not get token from tokenGetter function.');
     }
     if (token) {
-      if (!this.jwtHelper.isTokenExpired(token)) {
-        request = request.clone({
-          reportProgress: true,
-          setHeaders: {
-            [this.headerName]: this.jwtHelper.decodeToken(token).oauth_token.slice(0, 500)
-          }
-        });
-      } else {
-        request = request.clone({ reportProgress: true });
-      }
+      request = request.clone({
+        reportProgress: true,
+        setHeaders: {
+          [this.headerName]: this.authScheme + token
+        }
+      });
     } else {
       request = request.clone({ reportProgress: true });
     }
