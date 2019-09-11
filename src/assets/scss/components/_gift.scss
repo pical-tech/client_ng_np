@@ -54,6 +54,7 @@
           height: 100%;
           @include box-shadow-default();
           .gift-card-desc {
+            font-size: 120%;
           }
           .gift-card-icon {
             position: absolute;

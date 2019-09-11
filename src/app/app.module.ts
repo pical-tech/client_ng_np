@@ -20,6 +20,7 @@ import { RouterModule } from '@angular/router';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { JwtModule, JWT_OPTIONS } from './../package';
 import { GalleryService } from './_services/gallery/gallery.service';
+import { CeremonyComponent } from './components/ceremony/ceremony.component';
 
 export function jwtOptionsFactory() {
   return {
@@ -37,6 +38,7 @@ export function jwtOptionsFactory() {
     UserlayoutComponent,
     GiftRegistryComponent,
     GalleryComponent,
+    CeremonyComponent,
   ],
   imports: [
     AppRoutingModule,

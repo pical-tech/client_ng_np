@@ -168,6 +168,7 @@
           @include box-shadow-default();
           .gallery-card-body {
             height: calc(100% - 50px);
+            overflow: hidden;
             position: relative;
             .gallery-thumbnil {
             }

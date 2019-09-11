@@ -6,13 +6,15 @@ import { AdminlayoutComponent } from './layout/adminlayout/adminlayout.component
 import { UserlayoutComponent } from './layout/userlayout/userlayout.component';
 import { GiftRegistryComponent } from './components/gift-registry/gift-registry.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { CeremonyComponent } from './components/ceremony/ceremony.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: '', component: AdminlayoutComponent, canActivateChild: [AuthGuard],
     children: [
       { path: 'gift', component: GiftRegistryComponent },
-      { path: 'gallery', component: GalleryComponent }
+      { path: 'gallery', component: GalleryComponent },
+      { path: 'ceremony', component: CeremonyComponent }
     ]
   },
   { path: '404', component: UserlayoutComponent, children: [] }

@@ -1,0 +1,180 @@
+<div class="ceremony">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="ceremony-banner">
+          <div class="row">
+            <div class="col p-0">
+              <div class="ceremony-image">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="ceremony-box">
+          <div class="row">
+            <div class="col">
+              <div class="ceremony-card-container">
+                <div class="row">
+                  <div class="col ceremony-card p-0 mt-0">
+                    <div class="ceremony-card-header">
+                      <div class="row">
+                        <div class="col">
+                          <div class="ceremony-title">
+                            <span>Ceremony</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ceremony-card-body">
+                      <div class="row">
+                        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                          <form [formGroup]="ceremonyForm" (ngSubmit)="addCeremony()">
+                            <div class="ceremony-form">
+                              <div class="row">
+                                <div class="col">
+                                  <div class="ceremony-add">
+                                    <span>Add Ceremony</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-mg-6 col-sm-12">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': ceremonyForm.controls['title'].value, 'is-invalid': !ceremonyForm.controls['title'].valid}">
+                                    <label class="control-label">Ceremony Name</label>
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="title" type="text" />
+                                  </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-mg-6 col-sm-12">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': ceremonyForm.controls['date_time'].value, 'is-invalid': !ceremonyForm.controls['date_time'].valid}">
+                                    <label class="control-label">Date</label>
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="date_time" type="text" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': ceremonyForm.controls['description'].value, 'is-invalid': !ceremonyForm.controls['description'].valid}">
+                                    <label class="control-label">Description</label>
+                                    <textarea autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="description" type="text"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': ceremonyForm.controls['venue'].value, 'is-invalid': !ceremonyForm.controls['venue'].valid}">
+                                    <label class="control-label">Venue</label>
+                                    <textarea autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="venue" type="text"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group text-right">
+                                    <button class="btn btn-primary btn-round">Add Ceremony</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col p-0">
+                    <div class="ceremony-list-title">
+                      <span>Ceremony List</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" *ngFor="let ceremony of ceremonyList; index as i">
+                  <div class="col ceremony-card p-0" [ngClass]="{'mt-0': i === 0 }">
+                    <div class="ceremony-card-header">
+                      <div class="row">
+                        <div class="col">
+                          <div class="ceremony-title">
+                            <span>{{ceremony.title}}</span>
+                            <div class="ceremony-options">
+                              <span class="edit">edit</span>
+                              <span class="delete">delete</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ceremony-card-body">
+                      <div class="row">
+                        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+                          <div class="cr-card">
+                            <div class="row">
+                              <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12">
+                                <div class="row">
+                                  <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12 text-center align-self-center">
+                                    <div class="cr-icon">
+                                      <img [src]="ceremony.image_url">
+                                    </div>
+                                  </div>
+                                  <div class="col-xl-7 col-lg-7 col-md-6 col-sm-12">
+                                    <div class="cr-desc">
+                                      <div class="row">
+                                        <div class="col">
+                                          <div class="form-group">
+                                            <label class="control-label">Event Name</label>
+                                            <label class="control-label text-primary">{{ceremony.title}}</label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col">
+                                          <div class="form-group">
+                                            <label class="control-label">Event Date</label>
+                                            <label
+                                              class="control-label text-primary">{{ceremony.date_time | date}}</label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-xl-7 col-lg-7 col-md-6 col-sm-12">
+                                <div class="cr-desc">
+                                  <div class="row">
+                                    <div class="col">
+                                      <div class="form-group">
+                                        <label class="control-label">Venue</label>
+                                        <label class="control-label text-primary">{{ceremony.venue}}</label>
+                                        <label class="control-label text-primary">{{ceremony.description}}</label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
