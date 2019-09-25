@@ -1,0 +1,116 @@
+<div class="events">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="events-banner">
+          <div class="row">
+            <div class="col p-0">
+              <div class="events-image">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="events-box">
+          <div class="row">
+            <div class="col">
+              <div class="events-card-container">
+                <div class="row">
+                  <div class="col events-card p-0 mt-0">
+                    <div class="events-card-header">
+                      <div class="row">
+                        <div class="col">
+                          <div class="events-title">
+                            <span>EVENT DETAILS</span>
+                            <div class="events-span float-right">
+                              Add Details About The Event
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="events-card-body">
+                      <div class="row">
+                        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                          <form [formGroup]="eventForm" (ngSubmit)="addEventForm()">
+                            <div class="events-form">
+                              <div class="row">
+                                <div class="col">
+                                  <div class="events-add">
+                                    <span>Add Ceremony</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-mg-6 col-sm-12">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': eventForm.controls['title'].value, 'is-invalid': !eventForm.controls['title'].valid}">
+                                    <label class="control-label">Event Name</label>
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="title" type="text" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': eventForm.controls['description'].value, 'is-invalid': !eventForm.controls['description'].valid}">
+                                    <label class="control-label">Event Description</label>
+                                    <textarea autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="description" type="text"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-mg-6 col-sm-12">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': eventForm.controls['title'].value, 'is-invalid': !eventForm.controls['title'].valid}">
+                                    <label class="control-label">Event Date</label>
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="title" type="text" />
+                                  </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-mg-6 col-sm-12">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': eventForm.controls['title'].value, 'is-invalid': !eventForm.controls['title'].valid}">
+                                    <label class="control-label">Registry End Date</label>
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="title" type="text" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': eventForm.controls['venue'].value, 'is-invalid': !eventForm.controls['venue'].valid}">
+                                    <label class="control-label">Upload Image</label>
+                                    <input type="file" class="form-control"/>
+                                  </div>
+                                  <span>Set The Mood By Uploading .jpg or .png. File Size Should Not Exceed 5MB.</span>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group text-right">
+                                    <button class="btn btn-primary btn-round">Save & Continue</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

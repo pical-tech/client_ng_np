@@ -1,0 +1,113 @@
+.events {
+  .events-banner {
+    .events-image {
+      min-height: 60vh;
+      position: relative;
+      overflow: hidden;
+      .events-poster {
+        margin: 0 auto;
+        padding: 0px 20px;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("/assets/images/ceremony.png");
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        z-index: -1;
+        background-position: 0px -20vh;
+        filter: blur(4px);
+      }
+      &::before {
+        content: "";
+        background: rgba(0, 0, 0, 0.38);
+        z-index: 1;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+  .events-box {
+    padding: 20px;
+    .events-card-container {
+      padding: 15px;
+      .events-card {
+        border-radius: 3px;
+        overflow: hidden;
+        margin-top: 30px;
+        @include box-shadow-default();
+        .events-card-header {
+          background: rgba(0, 0, 0, 0.16);
+          .events-title {
+            color: $brand-primary-text;
+            font-family: $Lato-Semibold;
+            font-size: 100%;
+            padding: 10px 15px;
+            .events-options {
+              display: inline-block;
+              margin-left: 20px;
+              span {
+                font-size: 80%;
+                cursor: pointer;
+                display: inline-block;
+                &.edit {
+                  margin-right: 10px;
+                  border-right: 1px solid rgba(0, 0, 0, 0.22);
+                  padding-right: 10px;
+                  color: $brand-success;
+                }
+                &.delete {
+                  color: $brand-danger;
+                }
+              }
+            }
+          }
+        }
+        .events-card-body {
+          padding: 10px 15px;
+          .events-add {
+            padding: 10px 0px;
+            font-family: $Lato-Semibold;
+            font-size: 120%;
+            color: $brand-primary;
+          }
+          .cr-card {
+            .cr-icon {
+              border-radius: 3px;
+              overflow: hidden;
+              @include box-shadow-default();
+              max-width: 150px;
+            }
+            .cr-desc {
+              .form-group {
+                margin-bottom: 0.5rem;
+                .control-label {
+                  margin: 0 auto;
+                  display: block;
+                  &.text-primary {
+                    font-size: 120%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .events-list-title {
+        color: $brand-primary;
+        font-family: $Lato-Semibold;
+        font-size: 120%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #d6d6d6;
+      }
+    }
+  }
+}

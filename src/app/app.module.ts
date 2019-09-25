@@ -21,6 +21,8 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { JwtModule, JWT_OPTIONS } from './../package';
 import { GalleryService } from './_services/gallery/gallery.service';
 import { CeremonyComponent } from './components/ceremony/ceremony.component';
+import { EventsComponent } from './components/events/events.component';
+import { RsvpComponent } from './components/rsvp/rsvp.component';
 
 export function jwtOptionsFactory() {
   return {
@@ -39,6 +41,8 @@ export function jwtOptionsFactory() {
     GiftRegistryComponent,
     GalleryComponent,
     CeremonyComponent,
+    EventsComponent,
+    RsvpComponent,
   ],
   imports: [
     AppRoutingModule,
