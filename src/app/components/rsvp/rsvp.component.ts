@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GuestService } from './../../_services';
+import { GuestResponseModel, GuestRSVPList } from './../../_model';
 
 @Component({
   selector: 'app-rsvp',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rsvp.component.scss']
 })
 export class RsvpComponent implements OnInit {
-
-  constructor() { }
+  public guestRSVPList: Array<GuestRSVPList>;
+  constructor(private guestService: GuestService) { }
 
   ngOnInit() {
+    this.getRSVPList();
   }
-
+  getRSVPList() {
+    this.guestService.getRSVPList().subscribe((response: GuestResponseModel) => {
+      if (response && response.data) {
+        this.guestRSVPList = response.data.rows as GuestRSVPList[];
+      }
+      console.log(response);
+    }, (error: Error) => {
+      console.log(error);
+    });
+  }
 }

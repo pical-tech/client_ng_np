@@ -18,7 +18,8 @@ const routes: Routes = [
       { path: 'gallery', component: GalleryComponent },
       { path: 'ceremony', component: CeremonyComponent },
       { path: 'event', component: EventsComponent },
-      { path: 'rsvp', component: RsvpComponent }
+      { path: 'guest', component: RsvpComponent },
+      { path: '**', redirectTo: 'gallery', pathMatch: 'full' }
     ]
   },
   { path: '404', component: UserlayoutComponent, children: [] }

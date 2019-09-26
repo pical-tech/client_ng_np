@@ -11,9 +11,6 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" href="javascript:void(0)" [routerLink]="['/abcd']">Our Story</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" href="javascript:void(0)" [routerLink]="['/event']">Events</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
@@ -26,7 +23,10 @@
           <a class="nav-link" href="javascript:void(0)" [routerLink]="['/gift']">Gift Registry</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" href="javascript:void(0)" [routerLink]="['/rsvp']">RSVP</a>
+          <a class="nav-link" href="javascript:void(0)" [routerLink]="['/guest']">Guest</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="btn btn-primary btn-round" href="javascript:void(0)" (click)="logOut()">Logout</a>
         </li>
       </ul>
     </div>
