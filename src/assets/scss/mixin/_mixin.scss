@@ -1,20 +1,8 @@
 @mixin linear-gradient-deg($degree, $color1, $color2) {
   background: $color1; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(
-    $degree,
-    $color1,
-    $color2
-  ); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(
-    $degree,
-    $color1,
-    $color2
-  ); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(
-    $degree,
-    $color1,
-    $color2
-  ); /* For Firefox 3.6 to 15 */
+  background: -webkit-linear-gradient($degree, $color1, $color2); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($degree, $color1, $color2); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($degree, $color1, $color2); /* For Firefox 3.6 to 15 */
   background: linear-gradient($degree, $color1, $color2); /* Standard syntax */
 }
 
@@ -42,10 +30,75 @@
   box-shadow: 0 2px 6px rgba($color, $bmd-shadow-penumbra-opacity * 3);
 }
 @mixin box-shadow-default() {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.16);
 }
 @mixin button-shadow-color($color) {
   box-shadow: 0 14px 26px -12px rgba($color, $bmd-shadow-penumbra-opacity * 3),
-    0 4px 23px 0px rgba(0, 0, 0, $bmd-shadow-ambient-opacity),
-    0 8px 10px -5px rgba($color, $bmd-shadow-umbra-opacity);
+    0 4px 23px 0px rgba(0, 0, 0, $bmd-shadow-ambient-opacity), 0 8px 10px -5px rgba($color, $bmd-shadow-umbra-opacity);
+}
+
+@mixin material-placeholder() {
+  &::-moz-placeholder {
+    @content;
+  } // Firefox
+  &:-ms-input-placeholder {
+    @content;
+  } // Internet Explorer 10+
+  &::-webkit-input-placeholder {
+    @content;
+  } // Safari and Chrome
+}
+@mixin mdb-label-color-toggle-focus() {
+  // override bootstrap focus and keep all the standard color (could be multiple radios in the form group)
+  .form-group.is-focused & {
+    color: $mdb-label-color;
+
+    // on focus just darken the specific labels, do not turn them to the brand-primary
+    &:hover,
+    &:focus {
+      color: $mdb-label-color-toggle-focus;
+    }
+
+    // correct the above focus color for disabled items
+    fieldset[disabled] & {
+      color: $mdb-label-color;
+    }
+  }
+}
+
+@mixin transform-scale3d($value) {
+  -webkit-transform: scale3d($value);
+  -moz-transform: scale3d($value);
+  -o-transform: scale3d($value);
+  -ms-transform: scale3d($value);
+  transform: scale3d($value);
+}
+@mixin animation($value) {
+  -webkit-animation: $value;
+  -moz-animation: $value;
+  -o-animation: $value;
+  -ms-animation: $value;
+  animation: $value;
+}
+@mixin bmd-radio-color($color) {
+  &::after {
+    border-color: $color;
+  }
+  &::before {
+    background-color: $color;
+  }
+}
+@mixin radio-color($color, $opacity) {
+  & ~ .check,
+  & ~ .circle {
+    opacity: $opacity;
+  }
+
+  & ~ .check {
+    background-color: $color;
+  }
+
+  & ~ .circle {
+    border-color: $color;
+  }
 }

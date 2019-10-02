@@ -15,6 +15,17 @@
       "app",
       "camelCase"
     ],
+    "variable-name": {
+      "options": [
+        "check-format",
+        "allow-leading-underscore",
+        "allow-pascal-case",
+        "allow-snake-case",
+        "allow-trailing-underscore",
+        "require-const-for-all-caps",
+        "ban-keywords"
+      ]
+    },
     "component-selector": [
       true,
       "element",

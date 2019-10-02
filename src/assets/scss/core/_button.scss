@@ -11,7 +11,6 @@
   vertical-align: middle;
   letter-spacing: 0;
   cursor: pointer;
-  background-color: transparent;
   border: 0;
   outline: 0;
   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -33,6 +32,18 @@
       background: $brand-primary;
       @include box-shadow-color($brand-primary);
     }
+    &:active,
+    &:not(:disabled):active {
+      background: rgba($brand-primary, 0.6);
+      @include box-shadow-color($brand-primary);
+      &:focus {
+        background: rgba($brand-primary, 0.6);
+        @include box-shadow-color($brand-primary);
+      }
+    }
+  }
+  &.focus, &:focus {
+    box-shadow: none;
   }
 }
 

@@ -131,7 +131,7 @@
                         <div class="gallery-card">
                           <div class="gallery-card-body d-flex align-items-center">
                             <div class="gallery-thumbnil">
-                              <img [src]="item.medea_url">
+                              <img *ngIf="item.medea_url" [src]="sanitizer.bypassSecurityTrustUrl(item.medea_url)">
                             </div>
                             <div class="blur-effect" [style.backgroundImage]="'url('+ item.medea_url +')'"></div>
                           </div>

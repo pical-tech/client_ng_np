@@ -75,7 +75,8 @@
     }
   }
   .card {
-    border-radius: 15px;
+    border-radius: 6px;
+    overflow: hidden;
     &.login-box-card {
       margin-top: 50px;
       .card-header {
@@ -108,9 +109,23 @@
       }
       .card-body {
         .login-form {
-          margin-top: 10px;
           .form-group {
-            margin-top: 30px;
+            margin-top: 20px;
+            &.form-check {
+              .form-check-radio {
+                display: inline-block;
+                margin: 0 auto;
+              }
+              .divider-line {
+                position: relative;
+                margin: 0px 20px;
+                height: 25px;
+                display: inline-block;
+                background: rgba(75, 75, 75, 0.47);
+                width: 1px;
+                top: 8px;
+              }
+            }
           }
         }
       }

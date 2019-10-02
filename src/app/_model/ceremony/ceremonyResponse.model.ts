@@ -16,10 +16,10 @@ export class CeremonyResponseModel {
   createdAt: string;
   updatedAt: string;
   event_id: string;
-  photo_galleries: Photo_gallery[];
+  photo_galleries: PhotoGallery[];
 }
 
-export interface Photo_gallery {
+export class PhotoGallery {
   id: string;
   medea_url: string;
   medea_type: string;

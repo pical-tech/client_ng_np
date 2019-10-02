@@ -1,13 +1,17 @@
-@import '~ngx-toastr/toastr';
-@import 'mixin/mixin';
-@import 'core/color';
-@import 'core/variable';
+@import "mixin/mixin";
+@import "core/color";
+@import "core/variable";
+$fa-font-path:"~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
 
-@import 'core/card';
-@import 'core/inputbox';
-@import 'core/button';
+@import "core/card";
+@import "core/inputbox";
+@import "core/button";
+@import "core/inputs";
+@import "core/toastr";
 
 // components
-@import 'components/components';
+@import "components/components";
 
-@import 'core/responsive';
+@import "core/responsive";

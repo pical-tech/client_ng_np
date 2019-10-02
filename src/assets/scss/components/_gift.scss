@@ -70,13 +70,15 @@
           span {
             font-size: 170px;
             text-align: center;
-            display: block;
+            display: flex;
             height: 100%;
             background: $brand-primary;
             border-radius: 0px 50% 50% 0px;
             color: #fff;
-            padding: 50px;
+            padding: 20px;
             color: rgba(248, 248, 248, 0.4);
+            align-items: center;
+            justify-content: center;
           }
           &.right-number {
             span {

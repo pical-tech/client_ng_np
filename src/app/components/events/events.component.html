@@ -48,9 +48,9 @@
                                 <div class="col-xl-6 col-lg-6 col-mg-6 col-sm-12">
                                   <div class="form-group label-floating"
                                     [ngClass]="{ 'is-fill': eventForm.controls['title'].value, 'is-invalid': !eventForm.controls['title'].valid}">
-                                    <label class="control-label">Event Name</label>
                                     <input autocomplete="off" aria-autocomplete="none" class="form-control"
                                       formControlName="title" type="text" />
+                                    <label class="control-label">Event Name</label>
                                   </div>
                                 </div>
                               </div>
@@ -58,9 +58,9 @@
                                 <div class="col">
                                   <div class="form-group label-floating"
                                     [ngClass]="{ 'is-fill': eventForm.controls['description'].value, 'is-invalid': !eventForm.controls['description'].valid}">
-                                    <label class="control-label">Event Description</label>
                                     <textarea autocomplete="off" aria-autocomplete="none" class="form-control"
                                       formControlName="description" type="text"></textarea>
+                                    <label class="control-label">Event Description</label>
                                   </div>
                                 </div>
                               </div>
@@ -68,17 +68,20 @@
                                 <div class="col-xl-6 col-lg-6 col-mg-6 col-sm-12">
                                   <div class="form-group label-floating"
                                     [ngClass]="{ 'is-fill': eventForm.controls['title'].value, 'is-invalid': !eventForm.controls['title'].valid}">
+                                    <!-- <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="title" type="text" /> -->
+                                    <input class="form-control" formControlName="title" [owlDateTimeTrigger]="dt1"
+                                      [owlDateTime]="dt1">
+                                    <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                                     <label class="control-label">Event Date</label>
-                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
-                                      formControlName="title" type="text" />
                                   </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-mg-6 col-sm-12">
                                   <div class="form-group label-floating"
                                     [ngClass]="{ 'is-fill': eventForm.controls['title'].value, 'is-invalid': !eventForm.controls['title'].valid}">
-                                    <label class="control-label">Registry End Date</label>
                                     <input autocomplete="off" aria-autocomplete="none" class="form-control"
                                       formControlName="title" type="text" />
+                                    <label class="control-label">Registry End Date</label>
                                   </div>
                                 </div>
                               </div>

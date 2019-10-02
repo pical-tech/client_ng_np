@@ -1,0 +1,23 @@
+.loader-hidden {
+    visibility: hidden;
+}
+
+.loader-overlay {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    z-index: 500000;
+}
+
+.lds-ring {
+    display: block;
+    width: 64px;
+    height: 64px;
+    position: fixed;
+    z-index: 1000000;
+    background: #000;
+    left: 50%;
+    top: 80px;
+}

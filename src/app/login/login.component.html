@@ -36,20 +36,21 @@
                 <div class="card-header">
                   <div class="row">
                     <div class="col">
-                      <div class="login-btn-box active">
-                        <button class="btn login-btn-text">
+                      <div class="login-btn-box" [ngClass]="{'active': activeCard === 'LOGIN'}">
+                        <button class="btn login-btn-text" (click)="loginCard('LOGIN')">
                           <span>LOGIN</span>
                         </button>
                       </div>
                     </div>
                     <div class="col">
-                      <div class="login-btn-box">
-                        <button class="btn login-btn-text"><span>REGISTER</span></button>
+                      <div class="login-btn-box" [ngClass]="{'active': activeCard === 'REGISTER'}">
+                        <button class="btn login-btn-text"
+                          (click)="loginCard('REGISTER')"><span>REGISTER</span></button>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body" *ngIf="activeCard === 'LOGIN'">
                   <div class="row">
                     <div class="col">
                       <div class="login-form">
@@ -58,10 +59,11 @@
                             <div class="col">
                               <div class="row">
                                 <div class="col">
-                                  <div class="form-group label-floating"
+                                  <div class="form-group label-floating mt-0"
                                     [ngClass]="{ 'is-fill': loginForm.controls['username'].value, 'is-invalid': !loginForm.controls['username'].valid}">
-                                    <input autocomplete="off" aria-autocomplete="none" class="form-control" formControlName="username" type="text"
-                                      placeholder="Email" />
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="username" type="text" />
+                                    <label class="control-label">Email</label>
                                   </div>
                                 </div>
                               </div>
@@ -69,8 +71,9 @@
                                 <div class="col">
                                   <div class="form-group label-floating"
                                     [ngClass]="{ 'is-fill': loginForm.controls['password'].value, 'is-invalid': !loginForm.controls[ 'password' ].valid}">
-                                    <input autocomplete="off" aria-autocomplete="none" class="form-control" formControlName="password"
-                                      type="text" placeholder="password" />
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="password" type="password" />
+                                    <label class="control-label">password</label>
                                   </div>
                                 </div>
                               </div>
@@ -79,6 +82,95 @@
                                   <div class="form-group">
                                     <div class="login-btn text-center">
                                       <button class="btn btn-primary btn-round">LOGIN</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body" *ngIf="activeCard === 'REGISTER'">
+                  <div class="row">
+                    <div class="col">
+                      <div class="login-form">
+                        <form class="ngform" [formGroup]="signUpForm" (ngSubmit)="userSignUp()" #inputToFocus>
+                          <div class="row">
+                            <div class="col">
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating mt-0"
+                                    [ngClass]="{ 'is-fill': signUpForm.controls['user_name'].value, 'is-invalid': !signUpForm.controls['user_name'].valid}">
+                                    <input autocomplete="off" aria-autocomplete="none" autocomplete="off" class="form-control"
+                                      formControlName="user_name" type="text" />
+                                    <label class="control-label">User Name</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': signUpForm.controls['phone_no'].value, 'is-invalid': !signUpForm.controls[ 'phone_no' ].valid}">
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="phone_no" type="text" />
+                                    <label class="control-label">Mobile No.</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': signUpForm.controls['email'].value, 'is-invalid': !signUpForm.controls[ 'email' ].valid}">
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="email" type="text" />
+                                    <label class="control-label">Email</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating form-group-radio">
+                                    <label class="control-label">Gender</label>
+                                    <div class="radio form-check">
+                                      <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" formControlName="gender"
+                                          name="gender" value="ML"> Male
+                                        <span class="circle">
+                                          <span class="check"></span>
+                                        </span>
+                                      </label>
+                                    </div>
+                                    <div class="radio form-check">
+                                      <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" formControlName="gender"
+                                          name="gender" value="FML">
+                                        FeMale
+                                        <span class="circle">
+                                          <span class="check"></span>
+                                        </span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': signUpForm.controls['password'].value, 'is-invalid': !signUpForm.controls[ 'password' ].valid}">
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="password" type="password" />
+                                    <label class="control-label">Password</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <div class="login-btn text-center">
+                                      <button class="btn btn-primary btn-round">Sign Up</button>
                                     </div>
                                   </div>
                                 </div>

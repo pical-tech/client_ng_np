@@ -12,6 +12,12 @@ export class CeremonyService extends BaseProviderService {
   }
 
   getCeremony() {
-    return this.makeGetCall(environment.API_URL + '/ceremony');
+    return this.makeGetCall(environment.API_URL + '/ceremony/event_id/12');
+  }
+  setCeremony(ceremonyObject) {
+    return this.makePostCall(environment.API_URL + '/ceremony', ceremonyObject);
+  }
+  updateCeremony(ceremonyObject) {
+    return this.makePutCall(environment.API_URL + '/ceremony', ceremonyObject);
   }
 }

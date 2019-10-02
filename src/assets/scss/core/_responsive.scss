@@ -197,6 +197,52 @@
       }
     }
   }
+  .login {
+    .login-box-icon {
+      position: fixed;
+      .login-image {
+      }
+    }
+    .login-box-nav {
+      display: block;
+      .back-icon {
+        display: none;
+        .icon {
+        }
+      }
+    }
+    .login-box-logo {
+      .logo-icon {
+        .logo {
+        }
+      }
+    }
+    .card {
+      &.login-box-card {
+        margin-top: 0px;
+        .card-header {
+          .login-btn-box {
+            .btn {
+            }
+            &.active {
+              .btn {
+              }
+            }
+          }
+        }
+        .card-body {
+          .login-form {
+            .form-group {
+              &.form-check {
+                .form-check-radio {
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 400px) {

@@ -101,11 +101,14 @@
         li {
           text-align: center;
           a {
-            padding: 10px;
-            display: inline-block;
+            padding: 5px;
+            display: flex;
             color: #4b4b4b;
             position: relative;
             top: 1px;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
             &:hover,
             &:focus,
             &:hover:focus,

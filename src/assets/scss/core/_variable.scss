@@ -53,6 +53,7 @@ button:focus {
   padding: 5px;
   margin: 0 auto;
   font-family: $Lato-Semibold;
+  line-height: 30px;
 }
 .wrapper {
   margin-top: 55px;
@@ -60,4 +61,112 @@ button:focus {
 
 .text-primary {
   color: $brand-primary !important;
+}
+
+.loader {
+  position: fixed;
+  z-index: 1200;
+  background: rgba(255, 255, 255, 0.78);
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  .spinner {
+    -webkit-animation: rotator 1.4s linear infinite;
+    animation: rotator 1.4s linear infinite;
+  }
+
+  @-webkit-keyframes rotator {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(270deg);
+      transform: rotate(270deg);
+    }
+  }
+
+  @keyframes rotator {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(270deg);
+      transform: rotate(270deg);
+    }
+  }
+  .path {
+    stroke-dasharray: 187;
+    stroke-dashoffset: 0;
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center;
+    -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+    animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+  }
+
+  @keyframes colors {
+    0% {
+      stroke: red;
+    }
+    14.285714286% {
+      stroke: orange;
+    }
+    28.571428572% {
+      stroke: yellow;
+    }
+    42.857142858% {
+      stroke: green;
+    }
+    57.142857144% {
+      stroke: blue;
+    }
+    71.42857143% {
+      stroke: indigo;
+    }
+    100% {
+      stroke: violet;
+    }
+  }
+  @-webkit-keyframes dash {
+    0% {
+      stroke-dashoffset: 187;
+    }
+    50% {
+      stroke-dashoffset: 46.75;
+      -webkit-transform: rotate(135deg);
+      transform: rotate(135deg);
+    }
+    100% {
+      stroke-dashoffset: 187;
+      -webkit-transform: rotate(450deg);
+      transform: rotate(450deg);
+    }
+  }
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 187;
+    }
+    50% {
+      stroke-dashoffset: 46.75;
+      -webkit-transform: rotate(135deg);
+      transform: rotate(135deg);
+    }
+    100% {
+      stroke-dashoffset: 187;
+      -webkit-transform: rotate(450deg);
+      transform: rotate(450deg);
+    }
+  }
+}
+.loader-hidden {
+  visibility: hidden;
+}
+.cdk-overlay-container {
+  z-index: 1100;
 }

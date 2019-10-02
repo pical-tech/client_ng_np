@@ -8,9 +8,10 @@ $brand-inverse : rgb(60, 72, 88) !default;
 $brand-secoundry : rgba(48, 214, 190, 1) !default;
 $brand-skyblue : rgba(35, 193, 215, 1) !default;
 $brand-slight-black : rgba(17, 35, 54, 1) !default;
-$white: #fff !default;
-$black: #000 !default;
-
+$black: #000000; $rgb-black: "0,0,0" !default;
+$white: #ffffff; $rgb-white: "255,255,255" !default;
+$green: #4caf50 !default;
+$red: #f44336 !default;
 
 // primary gradian
 
@@ -20,3 +21,28 @@ $color-g-primary-2: rgb(43, 85, 130) !default;
 $bmd-shadow-umbra-opacity: 0.2 !default;
 $bmd-shadow-penumbra-opacity: 0.14 !default;
 $bmd-shadow-ambient-opacity: 0.12 !default;
+$border-radius-small: 2px !default;
+$mdb-input-underline-color: #D2D2D2 !default;
+$font-size-small:              12px !default;
+$font-size-xs-small:           11px !default;
+$mdb-input-size-base: 14px !default;
+$font-size-root:             16px !default;
+$mdb-input-padding-base-vertical : 8px - 1px !default; // was 6.
+$line-height-base:                1.5 !default;
+$mdb-label-as-placeholder-shim-base : 0 !default;
+$bmd-bmd-label-static-size-ratio: 75 / 100 !default;
+$bmd-help-size-ratio: 75 / 100 !default;
+$padding-large-vertical:       15px !default;
+$mdb-input-font-size-base: 14px !default;
+$mdb-label-top-margin-small : 12px !default;
+$mdb-input-padding-small-vertical : 4px - 1px !default; // 5
+$mdb-label-as-placeholder-shim-small: 8px !default;
+$mdb-label-top-margin-large : 16px !default;
+$mdb-input-padding-large-vertical : 10px - 1px !default; // 1
+$mdb-input-line-height-large : 1.3333333 !default; // extra decimals for Win 8.1 Chrome
+$mdb-label-as-placeholder-shim-large: -4px !default; // manual adjustment of label top when positioned as placeholder
+
+$mdb-label-color: unquote("rgba(#{$rgb-black}, 0.26)") !default;
+$mdb-label-color-toggle-focus: unquote("rgba(#{$rgb-black}, .54)") !default;
+$mdb-radio-color-off: $mdb-label-color-toggle-focus !default;
+$mdb-radio-color-on: $brand-primary !default;

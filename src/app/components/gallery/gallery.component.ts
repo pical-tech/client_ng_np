@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GalleryService } from './../../_services';
 import { GalleryResponseModel, CeremonyModel, GalleryListModel } from './../../_model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-gallery',
@@ -15,7 +16,7 @@ export class GalleryComponent implements OnInit {
   public galleryListType: Array<GalleryListModel>;
   public activeId: string;
   public photoSwitch = true;
-  constructor(private galleryService: GalleryService) { }
+  constructor(private galleryService: GalleryService, public sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.galleryService.getGallary().subscribe((response: GalleryResponseModel) => {
@@ -64,5 +65,11 @@ export class GalleryComponent implements OnInit {
       }
     });
     this.galleryListType = temp;
+  }
+  onImageLoad() {
+
+  }
+  onImgError(event) {
+    event.target.src = 'assets/images/delete.svg';
   }
 }

@@ -15,4 +15,7 @@ export class LoginService extends BaseProviderService {
   getLogin(loginObject) {
     return this.makePostCall(environment.API_URL + '/users/login', loginObject);
   }
+  creatUser(userObject) {
+    return this.makePostCall(environment.API_URL + '/users', userObject);
+  }
 }

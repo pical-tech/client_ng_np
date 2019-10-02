@@ -40,5 +40,3 @@ export class UserDetail {
   updatedAt: string;
   user_id: string;
 }
-
-
