@@ -25,6 +25,7 @@ import { GalleryService } from './_services/gallery/gallery.service';
 import { CeremonyComponent } from './components/ceremony/ceremony.component';
 import { EventsComponent } from './components/events/events.component';
 import { RsvpComponent } from './components/rsvp/rsvp.component';
+import { GiftRegistryListComponent } from './components/gift-registry-list/gift-registry-list.component';
 export function jwtOptionsFactory() {
   return {
     tokenGetter: () => {
@@ -51,7 +52,8 @@ export const MY_MOMENT_FORMATS = {
     GalleryComponent,
     CeremonyComponent,
     EventsComponent,
-    RsvpComponent
+    RsvpComponent,
+    GiftRegistryListComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,195 @@
+.gift-registry-list {
+  .gr-list {
+    background-image: url("/assets/images/gr-list-bg.png");
+    padding: 80px 0px 0px 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0px 40%;
+    .gr-list-card {
+      padding: 20px;
+      margin-bottom: 0px;
+      .head-line {
+        position: relative;
+        span {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 100%;
+          height: 2px;
+          background: transparent
+            linear-gradient(
+              90deg,
+              rgba(222, 227, 230, 1) 1%,
+              rgba(255, 253, 229, 1) 25%,
+              rgba(240, 235, 216, 1) 40%,
+              rgba(214, 205, 193, 1) 60%,
+              rgba(237, 237, 238, 1) 79%,
+              rgba(216, 213, 187, 1) 100%
+            )
+            0% 0% no-repeat padding-box;
+        }
+      }
+      .user-info {
+        padding: 20px 0px 0px 0px;
+        .user-icon {
+          height: 170px;
+          width: 170px;
+          overflow: hidden;
+          margin: 0 auto;
+          img {
+            height: calc(100% + 40px);
+          }
+        }
+        .user-name {
+          text-align: center;
+          font-size: 170%;
+          color: rgba(112, 112, 112, 1);
+          font-family: $Lato-Semibold;
+        }
+      }
+      .gr-title {
+        padding: 10px;
+        position: relative;
+        .gr-title-head {
+          text-align: center;
+          font-size: 200%;
+          font-family: $Lato-Semibold;
+          color: rgba(112, 112, 112, 1);
+          position: relative;
+          span {
+            background: #fff;
+            z-index: 1;
+            position: relative;
+            padding: 0px 20px;
+          }
+        }
+        &::after,
+        &::before {
+          content: "";
+          position: absolute;
+          height: 2px;
+          width: 30%;
+          background: $brand-primary;
+          left: 0;
+          top: 50%;
+          z-index: 0;
+        }
+        &::before {
+          right: 0;
+          left: auto;
+        }
+      }
+      .gr-details {
+        text-align: center;
+        color: rgba(112, 112, 112, 1);
+        .detail-box {
+        }
+        .detail-box-details {
+          font-family: $Lato-Semibold;
+          color: $brand-slight-black;
+        }
+      }
+      .gr-edit {
+        text-align: right;
+        padding: 10px 0px;
+        .gr-edit-button-group {
+          display: inline-flex;
+          padding: 0px 10px;
+          .btn {
+            border: 1px solid rgba(112, 112, 112, 1);
+            padding: 6px 18px;
+            color: rgba(112, 112, 112, 1);
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+      .gr-et-box {
+        padding: 30px 0px 10px 0px;
+        .gr-et-date-title {
+          color: rgba(112, 112, 112, 1);
+        }
+        .gr-et-date {
+          color: $brand-primary;
+          font-family: $Lato-Semibold;
+          font-size: 200%;
+        }
+      }
+    }
+  }
+  .most-popular {
+    background-image: url("/assets/images/gr-list-bg.png");
+    padding: 40px 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0px 40%;
+    .most-popular-title {
+      text-align: center;
+      font-size: 150%;
+      font-family: $Lato-Semibold;
+      text-transform: uppercase;
+      padding-bottom: 20px;
+    }
+    .swiper-container {
+      padding: 20px 0px 40px 0px;
+    }
+    .mp-box {
+      max-width: 250px;
+      margin: 0 auto;
+      .mp-box-card {
+        padding: 20px;
+        border: 6px solid rgba(196, 149, 47, 1);
+        border-radius: 5px;
+        background: $white;
+        @include box-shadow-default();
+        .mp-image {
+          padding-top: 30px;
+        }
+        .mp-description {
+          font-family: $Lato-Semibold;
+          text-align: center;
+          .mp-title {
+            font-size: 70%;
+          }
+          .mp-prize {
+            font-size: 100%;
+            color: $brand-primary;
+            padding-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+  .gr-items {
+    padding: 30px 0px;
+    .gr-items-box {
+      margin: 20px auto;
+      .gr-items-card {
+        max-width: 270px;
+        margin: 0 auto;
+        padding: 15px;
+        border-radius: 6px;
+        background: $white;
+        @include box-shadow-default();
+        .gr-items-icon {
+          padding: 15px;
+        }
+        .gr-items-description {
+          .gr-item-name {
+            color: $brand-slight-black;
+            font-family: $Lato-Semibold;
+          }
+          .gr-item-details {
+            color: $brand-primary-text;
+            font-size: 80%;
+          }
+          .gr-item-prize {
+            font-family: $Lato-Semibold;
+            color: $brand-primary;
+          }
+        }
+      }
+    }
+  }
+}
