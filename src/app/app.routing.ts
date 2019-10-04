@@ -10,6 +10,7 @@ import { CeremonyComponent } from './components/ceremony/ceremony.component';
 import { EventsComponent } from './components/events/events.component';
 import { RsvpComponent } from './components/rsvp/rsvp.component';
 import { GiftRegistryListComponent } from './components/gift-registry-list/gift-registry-list.component';
+import { GiftDetailComponent } from './components/gift-detail/gift-detail.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'event', component: EventsComponent },
       { path: 'guest', component: RsvpComponent },
       { path: 'gift-registry', component: GiftRegistryListComponent },
+      { path: 'gift-item', component: GiftDetailComponent },
       { path: '**', redirectTo: 'gallery', pathMatch: 'full' }
     ]
   },

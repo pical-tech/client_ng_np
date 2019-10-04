@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import Swiper from 'swiper';
 @Component({
@@ -7,7 +8,7 @@ import Swiper from 'swiper';
 })
 export class GiftRegistryListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     const popularSwiper = new Swiper('.most-popular-swiper', {
@@ -69,5 +70,7 @@ export class GiftRegistryListComponent implements OnInit {
       keyboard: true,
     });
   }
-
+  itemDetails() {
+    this.router.navigate(['/gift-item']);
+  }
 }
