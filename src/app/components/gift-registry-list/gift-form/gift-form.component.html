@@ -10,104 +10,19 @@
     <!-- Swiper -->
     <div class="swiper-container most-popular-swiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
+        <div *ngFor="let product of inventoryList; let i = index" class="swiper-slide">
           <div class="mp-box">
             <div class="mp-box-card">
               <div class="mp-description">
                 <div class="mp-title">
-                  <span>Bedsheets</span>
+                  <span>{{product.title}}</span>
                 </div>
                 <div class="mp-prize">
-                  <span>Starting @₹246</span>
+                  <span>₹{{product.price}}</span>
                 </div>
               </div>
               <div class="mp-image">
-                <img src="/assets/images/mp-01.png">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="mp-box">
-            <div class="mp-box-card">
-              <div class="mp-description">
-                <div class="mp-title">
-                  <span>Bedsheets</span>
-                </div>
-                <div class="mp-prize">
-                  <span>Starting @₹246</span>
-                </div>
-              </div>
-              <div class="mp-image">
-                <img src="/assets/images/mp-02.png">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="mp-box">
-            <div class="mp-box-card">
-              <div class="mp-description">
-                <div class="mp-title">
-                  <span>Bedsheets</span>
-                </div>
-                <div class="mp-prize">
-                  <span>Starting @₹246</span>
-                </div>
-              </div>
-              <div class="mp-image">
-                <img src="/assets/images/mp-01.png">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="mp-box">
-            <div class="mp-box-card">
-              <div class="mp-description">
-                <div class="mp-title">
-                  <span>Bedsheets</span>
-                </div>
-                <div class="mp-prize">
-                  <span>Starting @₹246</span>
-                </div>
-              </div>
-              <div class="mp-image">
-                <img src="/assets/images/mp-02.png">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="mp-box">
-            <div class="mp-box-card">
-              <div class="mp-description">
-                <div class="mp-title">
-                  <span>Bedsheets</span>
-                </div>
-                <div class="mp-prize">
-                  <span>Starting @₹246</span>
-                </div>
-              </div>
-              <div class="mp-image">
-                <img src="/assets/images/mp-01.png">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="mp-box">
-            <div class="mp-box-card">
-              <div class="mp-description">
-                <div class="mp-title">
-                  <span>Bedsheets</span>
-                </div>
-                <div class="mp-prize">
-                  <span>Starting @₹246</span>
-                </div>
-              </div>
-              <div class="mp-image">
-                <img src="/assets/images/mp-02.png">
+                <img [src]="product.image_url ? product.image_url : 'assets/images/placeholder.png'">
               </div>
             </div>
           </div>
@@ -122,121 +37,21 @@
   </div>
 </div>
 <div class="row gr-items">
-  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-    <div class="gr-items-box" (click)="itemDetails()">
+  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6" *ngFor="let product of inventoryList; let i = index">
+    <div class="gr-items-box" (click)="itemDetails(product)">
       <div class="gr-items-card">
         <div class="gr-items-icon">
-          <img src="assets/images/mp-01.png">
+          <img [src]="product.image_url ? product.image_url : 'assets/images/placeholder.png'">
         </div>
         <div class="gr-items-description">
           <div class="gr-item-name">
-            <span>Charbonnelet Walker</span>
+            <span>{{product.title}}</span>
           </div>
           <div class="gr-item-details">
-            <span>7 Piece Dark Marc de Champagne Truffles (135g)</span>
+            <span>{{product.description}}</span>
           </div>
           <div class="gr-item-prize">
-            <span>₹10,000</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-    <div class="gr-items-box">
-      <div class="gr-items-card">
-        <div class="gr-items-icon">
-          <img src="assets/images/mp-02.png">
-        </div>
-        <div class="gr-items-description">
-          <div class="gr-item-name">
-            <span>Charbonnelet Walker</span>
-          </div>
-          <div class="gr-item-details">
-            <span>7 Piece Dark Marc de Champagne Truffles (135g)</span>
-          </div>
-          <div class="gr-item-prize">
-            <span>₹10,000</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-    <div class="gr-items-box">
-      <div class="gr-items-card">
-        <div class="gr-items-icon">
-          <img src="assets/images/mp-01.png">
-        </div>
-        <div class="gr-items-description">
-          <div class="gr-item-name">
-            <span>Charbonnelet Walker</span>
-          </div>
-          <div class="gr-item-details">
-            <span>7 Piece Dark Marc de Champagne Truffles (135g)</span>
-          </div>
-          <div class="gr-item-prize">
-            <span>₹10,000</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-    <div class="gr-items-box">
-      <div class="gr-items-card">
-        <div class="gr-items-icon">
-          <img src="assets/images/mp-02.png">
-        </div>
-        <div class="gr-items-description">
-          <div class="gr-item-name">
-            <span>Charbonnelet Walker</span>
-          </div>
-          <div class="gr-item-details">
-            <span>7 Piece Dark Marc de Champagne Truffles (135g)</span>
-          </div>
-          <div class="gr-item-prize">
-            <span>₹10,000</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-    <div class="gr-items-box">
-      <div class="gr-items-card">
-        <div class="gr-items-icon">
-          <img src="assets/images/mp-01.png">
-        </div>
-        <div class="gr-items-description">
-          <div class="gr-item-name">
-            <span>Charbonnelet Walker</span>
-          </div>
-          <div class="gr-item-details">
-            <span>7 Piece Dark Marc de Champagne Truffles (135g)</span>
-          </div>
-          <div class="gr-item-prize">
-            <span>₹10,000</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-    <div class="gr-items-box">
-      <div class="gr-items-card">
-        <div class="gr-items-icon">
-          <img src="assets/images/mp-02.png">
-        </div>
-        <div class="gr-items-description">
-          <div class="gr-item-name">
-            <span>Charbonnelet Walker</span>
-          </div>
-          <div class="gr-item-details">
-            <span>7 Piece Dark Marc de Champagne Truffles (135g)</span>
-          </div>
-          <div class="gr-item-prize">
-            <span>₹10,000</span>
+            <span>₹{{product.price}}</span>
           </div>
         </div>
       </div>
@@ -250,109 +65,21 @@
     </div>
   </div>
   <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 m-auto">
-    <!-- Slider main container -->
-    <!-- "node_modules/swiper/js/swiper.min.js" -->
-    <!-- Swiper -->
     <div class="swiper-container product-swiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
+        <div *ngFor="let product of inventoryList; let i = index" class="swiper-slide">
           <div class="mp-box">
             <div class="mp-box-card">
               <div class="mp-description">
                 <div class="mp-title">
-                  <span>Bedsheets</span>
+                  <span>{{product.title}}</span>
                 </div>
                 <div class="mp-prize">
-                  <span>Starting @₹246</span>
+                  <span>₹{{product.price}}</span>
                 </div>
               </div>
               <div class="mp-image">
-                <img src="/assets/images/mp-01.png">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="mp-box">
-            <div class="mp-box-card">
-              <div class="mp-description">
-                <div class="mp-title">
-                  <span>Bedsheets</span>
-                </div>
-                <div class="mp-prize">
-                  <span>Starting @₹246</span>
-                </div>
-              </div>
-              <div class="mp-image">
-                <img src="/assets/images/mp-02.png">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="mp-box">
-            <div class="mp-box-card">
-              <div class="mp-description">
-                <div class="mp-title">
-                  <span>Bedsheets</span>
-                </div>
-                <div class="mp-prize">
-                  <span>Starting @₹246</span>
-                </div>
-              </div>
-              <div class="mp-image">
-                <img src="/assets/images/mp-01.png">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="mp-box">
-            <div class="mp-box-card">
-              <div class="mp-description">
-                <div class="mp-title">
-                  <span>Bedsheets</span>
-                </div>
-                <div class="mp-prize">
-                  <span>Starting @₹246</span>
-                </div>
-              </div>
-              <div class="mp-image">
-                <img src="/assets/images/mp-02.png">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="mp-box">
-            <div class="mp-box-card">
-              <div class="mp-description">
-                <div class="mp-title">
-                  <span>Bedsheets</span>
-                </div>
-                <div class="mp-prize">
-                  <span>Starting @₹246</span>
-                </div>
-              </div>
-              <div class="mp-image">
-                <img src="/assets/images/mp-01.png">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="mp-box">
-            <div class="mp-box-card">
-              <div class="mp-description">
-                <div class="mp-title">
-                  <span>Bedsheets</span>
-                </div>
-                <div class="mp-prize">
-                  <span>Starting @₹246</span>
-                </div>
-              </div>
-              <div class="mp-image">
-                <img src="/assets/images/mp-02.png">
+                <img [src]="product.image_url ? product.image_url : 'assets/images/placeholder.png'">
               </div>
             </div>
           </div>

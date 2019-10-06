@@ -5,6 +5,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0px 40%;
+    position: relative;
     .gr-list-card {
       padding: 20px;
       margin-bottom: 0px;
@@ -75,8 +76,35 @@
           z-index: 0;
         }
         &::before {
+          background-image: url("/assets/images/flies_1.png");
           right: 0;
           left: auto;
+        }
+        .gr-title-icon {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          &::after,
+          &::before {
+            content: "";
+            position: absolute;
+            height: 60px;
+            width: 80px;
+            left: 0;
+            top: 17px;
+            z-index: 0;
+            opacity: 0.4;
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+          &::after {
+            left: auto;
+            right: 0;
+            background-image: url("/assets/images/flies_1.png");
+          }
+          &::before {
+            background-image: url("/assets/images/flies_2.png");
+          }
         }
       }
       .gr-details {
@@ -117,6 +145,40 @@
         }
       }
     }
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      width: calc(50% - 40px);
+      height: 120px;
+      left: 40px;
+      top: 15px;
+      background-size: calc(30vw);
+      background-repeat: no-repeat;
+      z-index: -1;
+      background-position: 0px 0px;
+    }
+    &::after {
+      background-image: url("/assets/images/top_right.png");
+      left: auto;
+      right: 40px;
+      background-position: 100% 0;
+    }
+    &::before {
+      background-image: url("/assets/images/top_left.png");
+    }
+    .bg-icon {
+      background-image: url("/assets/images/top_left.png");
+      position: absolute;
+      width: 40%;
+      height: 100px;
+      left: calc(30%);
+      top: 15px;
+      background-size: calc(30vw);
+      background-repeat: no-repeat;
+      z-index: -1;
+      background-position: center 0;
+    }
   }
   .most-popular {
     background-image: url("/assets/images/gr-list-bg.png");
@@ -149,7 +211,13 @@
         margin: 0 auto;
         @include box-shadow-default();
         .mp-image {
-          padding-top: 30px;
+          max-width: 200px;
+          margin: 0 auto;
+          min-height: 250px;
+          height: 100%;
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
         }
         .mp-description {
           font-family: $Lato-Semibold;
@@ -171,20 +239,26 @@
   padding: 30px 0px;
   .gr-items-box {
     margin: 20px auto;
+    height: calc(100% - 40px);
     .gr-items-card {
-      max-width: 270px;
+      max-width: 320px;
       margin: 0 auto;
+      cursor: pointer;
       padding: 15px;
       border-radius: 6px;
       position: relative;
       background: $white;
       overflow: hidden;
+      height: 100%;
+      width: 100%;
       @include box-shadow-default();
       .gr-items-icon {
-        padding: 15px;
-        min-width: 200px;
+        max-width: 320px;
+        min-height: 200px;
+        width: 100%;
       }
       .gr-items-description {
+        margin-top: 10px;
         .gr-item-name {
           color: $brand-slight-black;
           font-family: $Lato-Semibold;
@@ -192,10 +266,13 @@
         .gr-item-details {
           color: $brand-primary-text;
           font-size: 80%;
+          margin: 10px auto;
+          text-align: justify;
         }
         .gr-item-prize {
           font-family: $Lato-Semibold;
           color: $brand-primary;
+          text-align: right;
         }
       }
     }
@@ -358,12 +435,17 @@
       .gr-items-card {
         border-radius: 6px 6px 30px 30px;
         z-index: 10;
+        height: calc(100% - 47px);
+        max-width: 270px;
         .gr-items-icon {
         }
         .gr-items-description {
+          margin-top: 0px;
           .gr-item-name {
+            margin: 0px auto;
           }
           .gr-item-details {
+            padding: 0px;
           }
           .gr-item-prize {
             .pd-price {

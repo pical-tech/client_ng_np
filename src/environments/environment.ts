@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   API_URL: 'http://13.235.25.53:3000/api/v1',
+  PICAL: 'http://pical.in:3000/api/v1'
 };
 
 /*

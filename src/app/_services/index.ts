@@ -4,3 +4,4 @@ export * from './ceremony/ceremony.service';
 export * from './guestService/guest.service';
 export * from './loaderservice/loader.service';
 export * from './loaderservice/loader';
+export * from './giftservice/gift.service';
