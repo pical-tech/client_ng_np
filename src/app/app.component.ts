@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'client-ng-np';
+  onActivate(e) {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+  onDeactivate(e) {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
 }

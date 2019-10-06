@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col p-0">
     <div class="wrapper">
-      <router-outlet></router-outlet>
+      <router-outlet (activate)='onActivate($event)' (deactivate)='onDeactivate($event)'></router-outlet>
     </div>
   </div>
 </div>

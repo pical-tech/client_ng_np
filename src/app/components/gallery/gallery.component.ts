@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { GalleryService } from './../../_services';
 import { GalleryResponseModel, CeremonyModel, GalleryListModel } from './../../_model';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Observable, Observer } from 'rxjs';
 
 @Component({
   selector: 'app-gallery',
@@ -16,18 +18,18 @@ export class GalleryComponent implements OnInit {
   public galleryListType: Array<GalleryListModel>;
   public activeId: string;
   public photoSwitch = true;
+  public ceremonyForm: FormGroup;
+  public imageLoader = true;
   constructor(private galleryService: GalleryService, public sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    this.createCeremonyForm();
     this.galleryService.getGallary().subscribe((response: GalleryResponseModel) => {
       this.galleryResponse = response as GalleryResponseModel;
       if (this.galleryResponse && this.galleryResponse.data && this.galleryResponse.data.rows) {
         this.galleryList = this.galleryResponse.data.rows as GalleryListModel[];
-        const temp = this.galleryList.filter(x => x.ceremony).map(x => x.ceremony_id);
-        const ceremonyId = Array.from(new Set(this.galleryList.map(x => x)));
-        const temp2 = this.galleryList.filter(item => {
-          // return ceremonyId.indexOf(item.ceremony_id)
-        });
+        this.galleryList.filter(x => x.ceremony).map(x => x.ceremony_id);
+        Array.from(new Set(this.galleryList.map(x => x)));
         const ceremonyIds = [];
         this.galleryList.forEach(item => { if (item.ceremony) { ceremonyIds.push({ id: item.ceremony.id, title: item.ceremony.title }); } });
         this.ceremonyTitle = [...new Set(ceremonyIds.map(s => JSON.stringify(s)))].map(s => JSON.parse(s));
@@ -42,6 +44,7 @@ export class GalleryComponent implements OnInit {
     this.activeId = ceremony.id;
     this.galleryList.forEach(item => {
       if (item.ceremony_id === ceremony.id) {
+        item.medea_url_dummy = 'assets/images/placeholder.png';
         temp.push(item);
       }
     });
@@ -53,14 +56,21 @@ export class GalleryComponent implements OnInit {
   }
   getPhotoDetails(type) {
     const temp = [];
+    this.imageLoader = true;
     if (type === 'Photo') {
       this.photoSwitch = true;
     }
     if (type === 'Video') {
       this.photoSwitch = false;
     }
-    this.galleryList.forEach(item => {
+    this.galleryList.forEach(async item => {
       if (item.ceremony_id === this.activeId && item.medea_type === type) {
+        this.getImageSrc(item.medea_url).then((res) => {
+          item.medea_url_dummy = res;
+          setTimeout(() => {
+            this.imageLoader = false;
+          }, 3000);
+        });
         temp.push(item);
       }
     });
@@ -69,7 +79,26 @@ export class GalleryComponent implements OnInit {
   onImageLoad() {
 
   }
-  onImgError(event) {
-    event.target.src = 'assets/images/delete.svg';
+  getImageSrc(path: string): Promise<any> {
+    return new Promise(async resolve => {
+      const img = new Image();
+      img.src = path;
+      img.onload = () => resolve(img.src);
+      img.onerror = () => resolve('assets/images/placeholder.png');
+    });
+  }
+  uploadFile() {
+
+  }
+  getFileDetail($event) {
+    console.log($event.target);
+  }
+  private createCeremonyForm() {
+    this.ceremonyForm = new FormGroup({
+      event_id: new FormControl(12, [Validators.required]),
+      ceremony_id: new FormControl(null, [Validators.required]),
+      medea_url: new FormControl(null, [Validators.required]),
+      medea_type: new FormControl(null, [Validators.required])
+    });
   }
 }

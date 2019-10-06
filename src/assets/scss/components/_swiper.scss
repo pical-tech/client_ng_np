@@ -144,7 +144,9 @@
   border: 1px solid;
   padding: 20px;
   border-radius: 50%;
+  opacity: 0.6;
   &:hover {
+    opacity: 1;
     @include box-shadow-default();
   }
 }

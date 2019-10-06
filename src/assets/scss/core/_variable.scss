@@ -20,6 +20,7 @@ $Lato-Semibold: "Lato-Semibold";
 html * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -169,4 +170,11 @@ button:focus {
 }
 .cdk-overlay-container {
   z-index: 1100;
+}
+
+.nodata {
+  display: block;
+  padding: 50px 15px;
+  text-align: center;
+  @include box-shadow-default();
 }

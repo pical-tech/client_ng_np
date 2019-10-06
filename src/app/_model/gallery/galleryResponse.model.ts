@@ -11,6 +11,7 @@ export class GalleryData {
 export class GalleryListModel {
   id: string;
   medea_url: string;
+  medea_url_dummy: string;
   medea_type: string;
   type: string;
   priority: number;

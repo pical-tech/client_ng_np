@@ -11,68 +11,68 @@
                     <div class="row">
                       <div class="col-xl-7 col-lg-7 col-mg-6 col-sm-12">
                         <div class="gallary-poster">
-                          <img src="./../../../assets/images/gallery-image.jpg">
+                          <img src="assets/images/gallery-image.jpg">
                         </div>
                       </div>
                       <div class="col-xl-5 col-lg-5 col-mg-6 col-sm-12">
                         <div class="gallery-upload h-100">
                           <div class="gallery-upload-card h-100">
-                            <div class="row">
-                              <div class="col">
-                                <div class="gallery-upload-card-header">
-                                  <label class="uploader">
-                                    <div class="uploader-icon">
-                                      <span>
-                                        <img src="./../../../assets/images/uploadericon.svg">
-                                      </span>
+                            <form [formGroup]="ceremonyForm" (ngSubmit)="uploadFile()">
+                              <div class="row">
+                                <div class="col">
+                                  <div class="gallery-upload-card-header">
+                                    <label class="uploader">
+                                      <div class="uploader-icon">
+                                        <span> <img src="assets/images/uploadericon.svg"></span>
+                                      </div>
+                                      <div class="uploader-text">
+                                        <span> Upload A Photo/Video </span>
+                                      </div>
+                                      <input type="file" id="file" (change)="getFileDetail($event)"
+                                        formControlName="medea_url" class="image-input">
+                                    </label>
+                                  </div>
+                                  <div class="gallery-upload-card-body">
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <select class="form-control" formControlName="ceremony_id">
+                                            <option disabled selected>Select Ceremony</option>
+                                            <option *ngFor="let ceremony of ceremonyTitle; index as i"
+                                              [value]="ceremony.id">{{ceremony.title}}</option>
+                                          </select>
+                                        </div>
+                                      </div>
                                     </div>
-                                    <div class="uploader-text">
-                                      <span>
-                                        Upload A Photo/Video
-                                      </span>
-                                    </div>
-                                    <input type="file" id="file" class="image-input">
-                                  </label>
-                                </div>
-                                <div class="gallery-upload-card-body">
-                                  <div class="row">
-                                    <div class="col">
-                                      <div class="form-group">
-                                        <select class="form-control">
-                                          <option>Select Ceremony</option>
-                                        </select>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group form-check text-center">
+                                          <label class="form-check-radio">Photo
+                                            <input type="radio" checked="checked" formControlName="medea_type"
+                                              name="medea_type">
+                                            <span class="checkmark"></span>
+                                          </label>
+                                          <span class="divider-line"></span>
+                                          <label class="form-check-radio">Video
+                                            <input type="radio" formControlName="medea_type" name="medea_type">
+                                            <span class="checkmark"></span>
+                                          </label>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="row">
-                                    <div class="col">
-                                      <div class="form-group form-check text-center">
-                                        <label class="form-check-radio">Photo
-                                          <input type="radio" checked="checked" name="radio">
-                                          <span class="checkmark"></span>
-                                        </label>
-                                        <span class="divider-line"></span>
-                                        <label class="form-check-radio">Video
-                                          <input type="radio" name="radio">
-                                          <span class="checkmark"></span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="gallery-upload-card-footer">
-                                  <div class="row">
-                                    <div class="col">
-                                      <div class="form-group text-center">
-                                        <button class="btn btn-primary btn-round">
-                                          Save
-                                        </button>
+                                  <div class="gallery-upload-card-footer">
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group text-center">
+                                          <button class="btn btn-primary btn-round" type="submit">Save</button>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
+                            </form>
                           </div>
                         </div>
                       </div>
@@ -116,7 +116,7 @@
                               </div>
                               <div class="gallery-switch">
                                 <button class="btn-fat-icon">
-                                  <img src="./../../../assets/images/delete.svg">
+                                  <img src="assets/images/delete.svg">
                                 </button>
                               </div>
                             </div>
@@ -131,36 +131,38 @@
                         <div class="gallery-card">
                           <div class="gallery-card-body d-flex align-items-center">
                             <div class="gallery-thumbnil">
-                              <img *ngIf="item.medea_url" [src]="sanitizer.bypassSecurityTrustUrl(item.medea_url)">
+                              <img *ngIf="item.medea_url_dummy && !imageLoader" [src]="item.medea_url_dummy">
+                              <div class="image-loader loader" [class.loader-hidden]="!imageLoader">
+                                <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66"
+                                  xmlns="http://www.w3.org/2000/svg">
+                                  <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33"
+                                    cy="33" r="30"></circle>
+                                </svg>
+                              </div>
                             </div>
-                            <div class="blur-effect" [style.backgroundImage]="'url('+ item.medea_url +')'"></div>
+                            <div class="blur-effect" [style.backgroundImage]="'url('+ item.medea_url_dummy +')'"></div>
                           </div>
                           <div class="gallery-card-footer">
                             <div class="gallery-icon">
                               <button class="btn-fat-icon">
-                                <img src="./../../../assets/images/delete.svg">
+                                <img src="assets/images/delete.svg">
                               </button>
                               <button class="btn-fat-icon">
-                                <img src="./../../../assets/images/edit.svg">
+                                <img src="assets/images/edit.svg">
                               </button>
                             </div>
                           </div>
                         </div>
                       </div>
+                      <div class="col-12" *ngIf="galleryListType && galleryListType.length === 0">
+                        <div class="nodata">
+                          <div class="nodata-box">
+                            <h1>{{photoSwitch? 'image': 'video'}} not available !!</h1>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div id="ceremony2" class="tab-pane fade" role="tabpanel">
-                  <h3>Menu 1</h3>
-                  <p>Some content in menu 1.</p>
-                </div>
-                <div id="ceremony3" class="tab-pane fade" role="tabpanel">
-                  <h3>Menu 2</h3>
-                  <p>Some content in menu 2.</p>
-                </div>
-                <div id="ceremony4" class="tab-pane fade" role="tabpanel">
-                  <h3>Menu 2</h3>
-                  <p>Some content in menu 2.</p>
                 </div>
               </div>
             </div>

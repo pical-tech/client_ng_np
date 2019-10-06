@@ -1,4 +1,4 @@
 <div class="container-fluid">
-  <router-outlet></router-outlet>
+  <router-outlet (activate)='onActivate($event)' (deactivate)='onDeactivate($event)'></router-outlet>
 </div>
 <app-loader></app-loader>

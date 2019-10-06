@@ -26,7 +26,10 @@ import { CeremonyComponent } from './components/ceremony/ceremony.component';
 import { EventsComponent } from './components/events/events.component';
 import { RsvpComponent } from './components/rsvp/rsvp.component';
 import { GiftRegistryListComponent } from './components/gift-registry-list/gift-registry-list.component';
-import { GiftDetailComponent } from './components/gift-detail/gift-detail.component';
+import { GiftDetailComponent } from './components/gift-registry-list/gift-detail/gift-detail.component';
+import { ProductListComponent } from './components/gift-registry-list/product-list/product-list.component';
+import { GiftFormComponent } from './components/gift-registry-list/gift-form/gift-form.component';
+
 export function jwtOptionsFactory() {
   return {
     tokenGetter: () => {
@@ -55,7 +58,9 @@ export const MY_MOMENT_FORMATS = {
     EventsComponent,
     RsvpComponent,
     GiftRegistryListComponent,
-    GiftDetailComponent
+    GiftDetailComponent,
+    ProductListComponent,
+    GiftFormComponent
   ],
   imports: [
     CommonModule,
