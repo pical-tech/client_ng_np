@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpInterceptor } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_FORMATS } from 'ng-pick-datetime';
-import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
@@ -82,8 +81,7 @@ export const MY_MOMENT_FORMATS = {
       }
     }),
   ],
-  providers: [AuthService, AuthGuard, GalleryService, ToastrService,
-    { provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_FORMATS }],
+  providers: [AuthService, AuthGuard, GalleryService, ToastrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

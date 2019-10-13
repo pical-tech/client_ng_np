@@ -104,8 +104,8 @@
                                 <div class="col">
                                   <div class="form-group label-floating mt-0"
                                     [ngClass]="{ 'is-fill': signUpForm.controls['user_name'].value, 'is-invalid': !signUpForm.controls['user_name'].valid}">
-                                    <input autocomplete="off" aria-autocomplete="none" autocomplete="off" class="form-control"
-                                      formControlName="user_name" type="text" />
+                                    <input autocomplete="off" aria-autocomplete="none" autocomplete="off"
+                                      class="form-control" formControlName="user_name" type="text" />
                                     <label class="control-label">User Name</label>
                                   </div>
                                 </div>
@@ -115,7 +115,7 @@
                                   <div class="form-group label-floating"
                                     [ngClass]="{ 'is-fill': signUpForm.controls['phone_no'].value, 'is-invalid': !signUpForm.controls[ 'phone_no' ].valid}">
                                     <input autocomplete="off" aria-autocomplete="none" class="form-control"
-                                      formControlName="phone_no" type="text" />
+                                      formControlName="phone_no" type="text" maxlength="10" minlength="10" />
                                     <label class="control-label">Mobile No.</label>
                                   </div>
                                 </div>
@@ -146,8 +146,7 @@
                                     <div class="radio form-check">
                                       <label class="form-check-label">
                                         <input class="form-check-input" type="radio" formControlName="gender"
-                                          name="gender" value="FML">
-                                        FeMale
+                                          name="gender" value="FML"> FeMale
                                         <span class="circle">
                                           <span class="check"></span>
                                         </span>
@@ -170,7 +169,116 @@
                                 <div class="col">
                                   <div class="form-group">
                                     <div class="login-btn text-center">
-                                      <button class="btn btn-primary btn-round">Sign Up</button>
+                                      <button class="btn btn-primary btn-round" [disabled]="!signUpForm.valid">Sign
+                                        Up</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body" *ngIf="activeCard === 'EVENTREGISTER'">
+                  <div class="row">
+                    <div class="col">
+                      <div class="login-form">
+                        <form class="ngform" [formGroup]="eventForm" (ngSubmit)="createEvent()" #inputToFocus>
+                          <div class="row">
+                            <div class="col">
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating mt-0"
+                                    [ngClass]="{ 'is-fill': eventForm.controls['bride_name'].value, 'is-invalid': !eventForm.controls['bride_name'].valid}">
+                                    <input autocomplete="off" aria-autocomplete="none" autocomplete="off"
+                                      class="form-control" formControlName="bride_name" type="text" />
+                                    <label class="control-label">Bride Name</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': eventForm.controls['groom_name'].value, 'is-invalid': !eventForm.controls[ 'groom_name' ].valid}">
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="groom_name" type="text" />
+                                    <label class="control-label">Groom Name</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <!-- <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time> -->
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': eventForm.controls['event_date'].value, 'is-invalid': !eventForm.controls['event_date'].valid}">
+                                    <input class="form-control" [min]="minDate" formControlName="event_date"
+                                      [owlDateTimeTrigger]="event_dt" [owlDateTime]="event_dt"
+                                      (dateTimeChange)="eventDateChange()">
+                                    <owl-date-time [pickerType]="'calendar'" #event_dt></owl-date-time>
+                                    <label class="control-label">Event Date</label>
+                                  </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': eventForm.controls['event_time'].value, 'is-invalid': !eventForm.controls['event_time'].valid}">
+                                    <input class="form-control" [(ngModel)]="event_time"
+                                      [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="event_tt"
+                                      [owlDateTime]="event_tt" (dateTimeChange)="eventTimeChange()">
+                                    <owl-date-time [pickerType]="'timer'" [hour12Timer]="true" #event_tt>
+                                    </owl-date-time>
+                                    <label class="control-label">Event Time</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': eventForm.controls['title'].value, 'is-invalid': !eventForm.controls[ 'title' ].valid}">
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="title" type="text" />
+                                    <label class="control-label">Title</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': eventForm.controls['venue'].value, 'is-invalid': !eventForm.controls[ 'venue' ].valid}">
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="venue" type="text" />
+                                    <label class="control-label">Venue</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': eventForm.controls['address'].value, 'is-invalid': !eventForm.controls[ 'address' ].valid}">
+                                    <textarea autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="address" type="text"> </textarea>
+                                    <label class="control-label">Address</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group label-floating"
+                                    [ngClass]="{ 'is-fill': eventForm.controls['pin_code'].value, 'is-invalid': !eventForm.controls[ 'pin_code' ].valid}">
+                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                      formControlName="pin_code" type="text" maxlength="6" minlength="6" />
+                                    <label class="control-label">Pin Code</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <div class="login-btn text-center">
+                                      <button class="btn btn-primary btn-round" [disabled]="!eventForm.valid">Create
+                                        Event</button>
                                     </div>
                                   </div>
                                 </div>
