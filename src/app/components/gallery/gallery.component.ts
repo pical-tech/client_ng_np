@@ -126,8 +126,7 @@ export class GalleryComponent implements OnInit {
               event_id: +this.activeEvent.id,
               ceremony_id: +this.ceremonyForm.controls.ceremony_id.value,
               medea_info: medeaInfo,
-              is_public: true,
-              priority: 2
+              is_public: true
             };
             this.galleryService.postS3Url(request).subscribe((res: any) => {
               if (res && !res.is_error && res.data && res.data.length && res.data.length > 0) {
