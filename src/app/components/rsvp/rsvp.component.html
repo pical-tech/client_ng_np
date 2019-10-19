@@ -31,8 +31,9 @@
                     <div class="guest-card-body">
                       <div class="row">
                         <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 guest-card-url">
-                          <label class="form-control">http/www.wedinjoy.com/john.alexa12345</label>
-                          <button class="btn btn-primary btn-round">Copy Url</button>
+                          <input type="text" class="form-control" value="{{activeEvent.event_url}}" #userinput>
+                          <button class="btn btn-primary btn-round" (click)="copyInputMessage(userinput)">Copy
+                            Url</button>
                         </div>
                       </div>
                     </div>
@@ -40,46 +41,51 @@
                 </div>
                 <div class="row mt-4">
                   <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                    <div class="rsvp-table-box">
-                      <div class="rsvp-table">
-                        <div class="row">
-                          <div class="col">
-                            <div class="guest-list-title">
-                              <span>Rsvp LIST</span>
-                            </div>
-                          </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="guest-list-title">
+                          <span>Rsvp LIST</span>
                         </div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="guest-list-head">
-                              <ul>
-                                <li>
-                                  <span>Name</span>
-                                </li>
-                                <li>
-                                  <span>Mobile</span>
-                                </li>
-                                <li>
-                                  <span>Email</span>
-                                </li>
-                              </ul>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="rsvp-table-box">
+                          <div class="rsvp-table">
+
+                            <div class="row">
+                              <div class="col">
+                                <div class="guest-list-head">
+                                  <ul>
+                                    <li>
+                                      <span>Name</span>
+                                    </li>
+                                    <li>
+                                      <span>Mobile</span>
+                                    </li>
+                                    <li>
+                                      <span>Email</span>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="guest-list-body">
-                              <ul *ngFor="let rsvp of guestRSVPList">
-                                <li>
-                                  <span>{{rsvp.name}}</span>
-                                </li>
-                                <li>
-                                  <span>{{rsvp.phone_no}}</span>
-                                </li>
-                                <li>
-                                  <span>{{rsvp.email}}</span>
-                                </li>
-                              </ul>
+                            <div class="row">
+                              <div class="col">
+                                <div class="guest-list-body">
+                                  <ul *ngFor="let rsvp of guestRSVPList">
+                                    <li>
+                                      <span>{{rsvp.name}}</span>
+                                    </li>
+                                    <li>
+                                      <span>{{rsvp.phone_no}}</span>
+                                    </li>
+                                    <li>
+                                      <span>{{rsvp.email}}</span>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -91,6 +97,61 @@
                       <div class="col">
                         <div class="guest-list-title">
                           <span>Guest approval</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="rsvp-table-box">
+                          <div class="rsvp-table">
+
+                            <div class="row">
+                              <div class="col">
+                                <div class="guest-list-head">
+                                  <ul>
+                                    <li>
+                                      <span>Name</span>
+                                    </li>
+                                    <li>
+                                      <span>Mobile</span>
+                                    </li>
+                                    <li>
+                                      <span>Approval</span>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <div class="guest-list-body">
+                                  <ul *ngFor="let guest of guestApprovalList; let i = index">
+                                    <li>
+                                      <span>{{guest.user && guest.user.user_name ? guest.user.user_name : ''}}</span>
+                                    </li>
+                                    <li>
+                                      <span>{{guest.user && guest.user.user_name ?guest.user.phone_no : ''}}</span>
+                                    </li>
+                                    <li>
+                                      <div class="switch-field">
+                                        Approve
+                                        <input type="radio" id="radio1-{{i}}" name="approval_state-{{i}}"
+                                          value="accepted" (click)="updateguestState(guest, 'accepted')" />
+                                        <label for="radio1-{{i}}"></label>
+                                        <input type="radio" id="radio2-{{i}}" name="approval_state-{{i}}"
+                                          value="requested" checked />
+                                        <label for="radio2-{{i}}"></label>
+                                        <input type="radio" id="radio3-{{i}}" name="approval_state-{{i}}"
+                                          value="ignored" (click)="updateguestState(guest, 'ignored')" />
+                                        <label for="radio3-{{i}}"></label>
+                                        Reject
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

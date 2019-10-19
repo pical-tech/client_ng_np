@@ -28,19 +28,28 @@
                                       <div class="uploader-text">
                                         <span> Upload A Photo/Video </span>
                                       </div>
-                                      <input type="file" id="file" (change)="getFileDetail($event)"
-                                        formControlName="medea_url" class="image-input">
+                                      <input type="file" id="customerFile"
+                                        (change)="handleFileInput($event.target.files)" class="image-input" multiple
+                                        accept="video/*, image/*">
+                                    </label>
+                                    <label *ngIf="imagePreview && imagePreview.length > 0" class="uploader ml-4"
+                                      (click)="openImageModel()">
+                                      <div class="uploader-icon">
+                                        <span> <img src="assets/images/uploadericon.svg"></span>
+                                      </div>
+                                      <div class="uploader-text">
+                                        <span>Preview</span>
+                                      </div>
                                     </label>
                                   </div>
                                   <div class="gallery-upload-card-body">
                                     <div class="row">
                                       <div class="col">
-                                        <div class="form-group">
-                                          <select class="form-control" formControlName="ceremony_id">
-                                            <option disabled selected>Select Ceremony</option>
-                                            <option *ngFor="let ceremony of ceremonyTitle; index as i"
-                                              [value]="ceremony.id">{{ceremony.title}}</option>
-                                          </select>
+                                        <div class="form-group label-floating"
+                                          [ngClass]="{'is-fill': ceremonyForm.controls['ceremony_id'].value, 'is-invalid': !ceremonyForm.controls['ceremony_id'].valid}">
+                                          <ng-select [items]="ceremonies" [selectOnTab]="true" bindLabel="title"
+                                            bindValue="id" autoCorrect="'on'" clearable='true'
+                                            placeholder="Select Ceremony" formControlName='ceremony_id'></ng-select>
                                         </div>
                                       </div>
                                     </div>
@@ -49,12 +58,13 @@
                                         <div class="form-group form-check text-center">
                                           <label class="form-check-radio">Photo
                                             <input type="radio" checked="checked" formControlName="medea_type"
-                                              name="medea_type">
+                                              value="PHOTO" name="medea_type">
                                             <span class="checkmark"></span>
                                           </label>
                                           <span class="divider-line"></span>
                                           <label class="form-check-radio">Video
-                                            <input type="radio" formControlName="medea_type" name="medea_type">
+                                            <input type="radio" formControlName="medea_type" name="medea_type"
+                                              value="VIDEO">
                                             <span class="checkmark"></span>
                                           </label>
                                         </div>
@@ -91,7 +101,7 @@
           <div class="row">
             <div class="col">
               <ul class="nav nav-tabs row m-0">
-                <li *ngFor="let ceremony of ceremonyTitle; index as i" class="col">
+                <li *ngFor="let ceremony of ceremonies; index as i" class="col">
                   <a [ngClass]="{'active': getClassActive(ceremony)}" href="javascript:void(0)"
                     (click)="openCeremony(ceremony)">{{ceremony.title}}</a>
                 </li>
@@ -110,9 +120,9 @@
                             <div class="col">
                               <div class="gallery-switch">
                                 <span [ngClass]="{'active': photoSwitch}"
-                                  (click)="getPhotoDetails('Photo')">Photo</span>
+                                  (click)="getPhotoDetails('PHOTO')">Photo</span>
                                 <span [ngClass]="{'active': !photoSwitch}"
-                                  (click)="getPhotoDetails('Video')">Video</span>
+                                  (click)="getPhotoDetails('VIDEO')">Video</span>
                               </div>
                               <div class="gallery-switch">
                                 <button class="btn-fat-icon">
@@ -127,11 +137,13 @@
                   </div>
                   <div class="gallery-list-body">
                     <div class="row">
-                      <div *ngFor="let item of galleryListType; index as i" class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                      <div *ngFor="let item of photoGallery; index as i" class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                         <div class="gallery-card">
                           <div class="gallery-card-body d-flex align-items-center">
                             <div class="gallery-thumbnil">
-                              <img *ngIf="item.medea_url_dummy && !imageLoader" [src]="item.medea_url_dummy">
+                              <img *ngIf="photoSwitch && item.medea_url" [src]="item.medea_url">
+                              <!-- <video *ngIf="!photoSwitch && item.medea_url" [src]="item.medea_url" controls
+                                controlsList="nodownload"></video> -->
                               <div class="image-loader loader" [class.loader-hidden]="!imageLoader">
                                 <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66"
                                   xmlns="http://www.w3.org/2000/svg">
@@ -140,7 +152,7 @@
                                 </svg>
                               </div>
                             </div>
-                            <div class="blur-effect" [style.backgroundImage]="'url('+ item.medea_url_dummy +')'"></div>
+                            <div class="blur-effect" [style.backgroundImage]="'url('+ item.medea_url +')'"></div>
                           </div>
                           <div class="gallery-card-footer">
                             <div class="gallery-icon">
@@ -154,7 +166,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-12" *ngIf="galleryListType && galleryListType.length === 0">
+                      <div class="col-12" *ngIf="photoGallery && photoGallery.length === 0">
                         <div class="nodata">
                           <div class="nodata-box">
                             <h1>{{photoSwitch? 'image': 'video'}} not available !!</h1>
@@ -168,6 +180,48 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="imageView" role="dialog" aria-hidden="true" tabindex="-1" #imageView>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Image Preview</h4>
+        <button type="button" class="close mat-button" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col">
+            <div class="swiper-container image-view-swiper">
+              <div class="swiper-wrapper">
+                <div *ngFor="let priview of imagePreview; let i = index" class="swiper-slide">
+                  <div class="image-view">
+                    <div class="remove-img" (click)="removeImage(priview)">
+                      <span>
+                        <i class="fa fa-times"></i>
+                      </span>
+                    </div>
+                    <img *ngIf="priview.media_type === 'PHOTO'" [src]="priview.url">
+                    <video *ngIf="priview.media_type === 'VIDEO'" [src]="priview.url" controls
+                      controlsList="nodownload"></video>
+                  </div>
+                </div>
+              </div>
+              <!-- Add Arrows -->
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer justify-content-center">
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
       </div>
     </div>
   </div>

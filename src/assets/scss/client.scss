@@ -1,7 +1,7 @@
 @import "mixin/mixin";
 @import "core/color";
 @import "core/variable";
-$fa-font-path:"~font-awesome/fonts";
+$fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome.scss";
 @import "~ng-pick-datetime/assets/style/picker.min.css";
 
@@ -13,5 +13,5 @@ $fa-font-path:"~font-awesome/fonts";
 
 // components
 @import "components/components";
-
+@import "core/ngselect";
 @import "core/responsive";

@@ -222,3 +222,51 @@
     }
   }
 }
+#imageView {
+  .swiper-pagination {
+    position: relative;
+    .swiper-pagination-bullet {
+      margin: 0px 10px;
+    }
+  }
+}
+.image-view {
+  border-radius: 6px;
+  @include box-shadow-default();
+  overflow: hidden;
+  position: relative;
+  img,
+  video {
+    max-width: 520px;
+    max-height: 520px;
+  }
+  .remove-img {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    background: rgba(255, 255, 255, 0.81);
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    text-align: center;
+    z-index: 40;
+    cursor: pointer;
+  }
+  // ul {
+  //   padding: 0px;
+  //   margin: 0 auto;
+  //   list-style: none;
+  //   li {
+  //     width: 100%;
+  //     display: inline-flex;
+  //     border-radius: 6px;
+  //     @include box-shadow-default();
+  //     overflow: hidden;
+  //     margin: 0px 7px;
+  //     video {
+  //       height: 100%;
+  //       width: 100%;
+  //     }
+  //   }
+  // }
+}

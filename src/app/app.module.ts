@@ -18,6 +18,7 @@ import { AuthService } from './_auth/auth.service';
 import { AuthGuard } from './_auth/auth.guard';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { JwtModule, JWT_OPTIONS } from './../package';
 import { GalleryService } from './_services/gallery/gallery.service';
@@ -69,6 +70,7 @@ export const MY_MOMENT_FORMATS = {
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NgSelectModule,
     RouterModule,
     ToastrModule.forRoot(),
     SharedModule,

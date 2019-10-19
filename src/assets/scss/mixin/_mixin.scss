@@ -13,6 +13,14 @@
   background-image: linear-gradient($dir, $color1, $color2, $color3); /* Standard syntax */
 }
 
+@mixin transform-rotate($value) {
+  -webkit-transform: rotate($value);
+  -moz-transform: rotate($value);
+  -o-transform: rotate($value);
+  -ms-transform: rotate($value);
+  transform: rotate($value);
+}
+
 @mixin undo-bs-tab-focus() {
   // clear out the tab-focus() from BS
   &,

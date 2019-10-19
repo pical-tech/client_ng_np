@@ -14,4 +14,10 @@ export class GuestService extends BaseProviderService {
   getRSVPList() {
     return this.makeGetCall(environment.API_URL + '/rsvpForm');
   }
+  guestApprovalList() {
+    return this.makeGetCall(environment.API_URL + '/userConsumer');
+  }
+  updateguestState(request) {
+    return this.makePutCall(environment.API_URL + '/userConsumer', request)
+  }
 }

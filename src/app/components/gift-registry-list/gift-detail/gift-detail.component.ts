@@ -38,5 +38,9 @@ export class GiftDetailComponent implements OnInit {
       this.loaderService.hide();
     });
   }
+  itemDetails(product) {
+    this.router.navigate(['/registry/gift-item/' + product.id]);
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
 
 }

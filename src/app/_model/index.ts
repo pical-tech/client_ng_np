@@ -4,4 +4,5 @@ export * from './ceremony/ceremonyResponse.model';
 export * from './guest/guestresponse.model';
 export * from './giftcomponent';
 export * from './event/eventresponse.model';
+export * from './event/eventfullresponse.model';
 

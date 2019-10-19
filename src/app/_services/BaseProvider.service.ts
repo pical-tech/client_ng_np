@@ -90,10 +90,10 @@ Return Type: Observable<T>
   Return Type: Observable<T>
   */
   makeUploadCall(resourceURL: string, requestModel: FormData): Observable<{} | HttpResponse<any>> {
-    const HttpUploadOptions = {
-      headers: new HttpHeaders({ Authorization: sessionStorage.getItem('token') }),
-    };
-    return this.http.post(resourceURL, requestModel, HttpUploadOptions).pipe(map(response => response), catchError(this.handleError));
+    // const HttpUploadOptions = {
+    //   headers: new HttpHeaders({ Authorization: sessionStorage.getItem('token') }),
+    // };
+    return this.http.post(resourceURL, requestModel).pipe(map(response => response), catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse): Observable<Error> {
