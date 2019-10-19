@@ -1,12 +1,11 @@
-import { LoaderService } from './../_services/loaderservice/loader.service';
 import { Component, OnInit, ViewChildren, NgZone, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { LoginService } from './../_services';
-import { LoginResponseModel } from '../_model';
+import { LoginService, LoaderService } from './../_services';
+import { LoginResponseModel, EventResponseModel } from '../_model';
 import { AuthService } from '../_auth/auth.service';
-import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +14,6 @@ import { DatePipe } from '@angular/common';
 export class LoginComponent implements OnInit, AfterViewInit {
   public loginForm: FormGroup;
   public signUpForm: FormGroup;
-  public eventForm: FormGroup;
   public userDetails = new LoginResponseModel();
   public event_time: Date;
   public activeCard = 'LOGIN';
@@ -26,7 +24,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.createLoginForm();
     this.createSignUpForm();
-    this.createEventForm();
   }
   userLogin() {
     this.loaderService.show();
@@ -36,33 +33,33 @@ export class LoginComponent implements OnInit, AfterViewInit {
         sessionStorage.setItem('user', JSON.stringify(this.userDetails.data));
         this.auth.sendToken(this.userDetails.data.token);
         this.toastr.success(this.userDetails.data.user_name, 'Welcome', { timeOut: 3000, progressBar: true, closeButton: true });
-        this.router.navigate(['/gift']);
+        this.router.navigate(['/event']);
+        // this.loginService.getUserEvent().subscribe((res: EventResponseModel) => {
+        //   if (res && !res.is_error && res.data && res.data.rows && res.data.rows.length) {
+        //   } else {
+        //     // this.router.navigate(['']);
+        //   }
+        // }, (error: any) => {
+        //   this.loaderService.hide();
+        // });
+      } else {
         this.loaderService.hide();
       }
-      this.loaderService.hide();
     }, (error: any) => {
       this.toastr.error('please try again !!', 'Invalid username or password !!', { timeOut: 3000, progressBar: true, closeButton: true });
       this.loaderService.hide();
     });
   }
   userSignUp() {
-    this.activeCard = 'EVENTREGISTER';
-  }
-  createEvent() {
-    if (this.signUpForm.valid && this.eventForm.valid) {
+    if (this.signUpForm.valid) {
       this.loaderService.show();
       this.loginService.creatUser(this.signUpForm.value).subscribe((response: LoginResponseModel) => {
         this.userDetails = response as LoginResponseModel;
         if (this.userDetails && this.userDetails.status && typeof this.userDetails.data !== 'undefined' && !this.userDetails.is_error) {
           sessionStorage.setItem('user', JSON.stringify(this.userDetails.data));
           this.auth.sendToken(this.userDetails.data.token);
-          this.loginService.creatUserEvent(this.eventForm.value).subscribe((res: any) => {
-            console.log(res);
-            this.router.navigate(['/gift']);
-          }, (error: any) => {
-            this.loaderService.hide();
-          });
           this.toastr.success(this.userDetails.data.user_name, 'Welcome', { timeOut: 3000, progressBar: true, closeButton: true });
+          this.router.navigate(['/event']);
         } else {
           this.toastr.error('please try again !!', 'something wrong !!', { timeOut: 3000, progressBar: true, closeButton: true });
           this.loaderService.hide();
@@ -90,25 +87,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private createEventForm() {
-    this.eventForm = new FormGroup({
-      bride_name: new FormControl(null, [Validators.required]),
-      groom_name: new FormControl(null, [Validators.required]),
-      event_date: new FormControl(null, [Validators.required]),
-      event_time: new FormControl(null, [Validators.required]),
-      title: new FormControl(null, [Validators.required]),
-      address: new FormControl(null, [Validators.required]),
-      venue: new FormControl(null, [Validators.required]),
-      pin_code: new FormControl(null, [Validators.required, Validators.maxLength(6), Validators.minLength(6)])
-    });
-  }
-  eventDateChange() {
-    this.eventForm.patchValue({ event_date: new DatePipe(navigator.language).transform(this.eventForm.get('event_date').value, 'y-MM-dd') });
-  }
-
-  eventTimeChange() {
-    this.eventForm.patchValue({ event_time: new DatePipe(navigator.language).transform(this.event_time, 'h:mm:ss a') });
-  }
   loginCard(card) {
     this.activeCard = card;
   }

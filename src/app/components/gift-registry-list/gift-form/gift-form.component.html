@@ -11,7 +11,7 @@
     <div class="swiper-container most-popular-swiper">
       <div class="swiper-wrapper">
         <div *ngFor="let product of inventoryList; let i = index" class="swiper-slide">
-          <div class="mp-box">
+          <div class="mp-box" (click)="itemDetails(product)">
             <div class="mp-box-card">
               <div class="mp-description">
                 <div class="mp-title">
@@ -68,7 +68,7 @@
     <div class="swiper-container product-swiper">
       <div class="swiper-wrapper">
         <div *ngFor="let product of inventoryList; let i = index" class="swiper-slide">
-          <div class="mp-box">
+          <div class="mp-box" (click)="itemDetails(product)">
             <div class="mp-box-card">
               <div class="mp-description">
                 <div class="mp-title">

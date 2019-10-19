@@ -178,3 +178,10 @@ button:focus {
   text-align: center;
   @include box-shadow-default();
 }
+
+app-root,
+router-outlet,
+app-userlayout,
+app-events {
+  display: block;
+}

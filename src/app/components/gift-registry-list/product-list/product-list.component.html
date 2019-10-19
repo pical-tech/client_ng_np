@@ -7,7 +7,7 @@
             <span>REGISTRY LIST</span>
           </div>
           <div class="gift-product-headt-button">
-            <button class="btn btn-primary btn-round">
+            <button class="btn btn-primary btn-round" [routerLink]="['/registry']">
               Add MORE
             </button>
           </div>
@@ -15,12 +15,12 @@
       </div>
     </div>
     <div class="row gr-items">
-      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6" *ngFor="let gift of myGiftRegistry; let i = index">
         <div class="gr-items-box">
           <div class="gr-items-card">
             <div class="gr-items-description">
               <div class="gr-item-name">
-                <span>Charbonnelet Walker</span>
+                <span>{{gift.specification}}</span>
               </div>
               <div class="gr-item-details">
                 <span>7 Piece Dark Marc de Champagne Truffles (135g)</span>

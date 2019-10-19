@@ -72,6 +72,7 @@
         }
         .ceremony-card-body {
           padding: 10px 15px;
+          position: relative;
           .ceremony-add {
             padding: 10px 0px;
             font-family: $Lato-Semibold;
@@ -97,6 +98,16 @@
                 }
               }
             }
+          }
+          .ceremony-bg-leave {
+            position: absolute;
+            right: -15px;
+            height: 200px;
+            z-index: -1;
+            width: 200px;
+            bottom: auto;
+            opacity: 0.3;
+            top: 0;
           }
         }
       }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-userlayout',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserlayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+  logOut() {
+    sessionStorage.clear();
+    this.router.navigate(['/login']);
   }
   onActivate(e) {
     window.scroll({ top: 0, behavior: 'smooth' });

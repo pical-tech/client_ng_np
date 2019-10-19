@@ -15,9 +15,7 @@ export class GiftRegistryComponent implements OnInit {
   public minDateStart = new Date();
   public minDateEnd = new Date();
   public maxDateStart = new Date((new Date().getFullYear() + 2).toString());
-  constructor(private router: Router, private giftService: GiftService) {
-
-  }
+  constructor(private router: Router, private giftService: GiftService) { }
 
   ngOnInit() {
     this.registryForm();

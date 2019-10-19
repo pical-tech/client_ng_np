@@ -247,6 +247,15 @@
 
 @media screen and (max-width: 400px) {
 }
-
+@media screen and (min-width: 768px) {
+  .navbar {
+    &.navbar-expand-md .navbar-collapse {
+      margin-top: 0px;
+      .navbar-nav .nav-item .nav-link {
+        padding: 0.5rem;
+      }
+    }
+  }
+}
 @media screen and (min-width: 768px) and (max-width: 992px) {
 }

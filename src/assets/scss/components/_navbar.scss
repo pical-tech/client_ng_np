@@ -6,6 +6,7 @@
   z-index: 100;
   background: #fff;
   @include box-shadow-default();
+  @include navbar-colors($white, $navbar-color);
   .navbar-brand {
     padding: 0px;
     margin: 0;
@@ -14,10 +15,11 @@
     }
   }
   .navbar-collapse {
+    margin-top: 20px;
     .navbar-nav {
       .nav-item {
         .nav-link {
-          padding: 0.5rem;
+          padding: 0.7rem 0.5rem;
           color: rgba(112, 112, 112, 1);
           font-family: $Lato-Semibold;
         }
@@ -29,6 +31,25 @@
         .btn {
           padding: 7px 15px;
         }
+      }
+    }
+  }
+  .navbar-toggler {
+    padding: 0.844rem 0.75rem;
+    background-color: transparent;
+    border: 0px;
+    border-radius: 0;
+    cursor: pointer;
+
+    .navbar-toggler-icon {
+      width: 22px;
+      height: 2px;
+      outline: 0;
+      display: block;
+      border-radius: 1px;
+
+      & + .navbar-toggler-icon {
+        margin-top: 4px;
       }
     }
   }

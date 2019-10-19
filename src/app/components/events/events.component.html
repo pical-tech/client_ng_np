@@ -1,99 +1,193 @@
-<div class="events">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col">
-        <div class="events-banner">
-          <div class="row">
-            <div class="col p-0">
-              <div class="events-image">
+<div class="row">
+  <div class="col p-0">
+    <div class="events">
+      <div class="container-fluid">
+        <!-- <div class="row">
+          <div class="col">
+            <div class="events-banner">
+              <div class="row">
+                <div class="col p-0">
+                  <div class="events-image">
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="events-box">
-          <div class="row">
-            <div class="col">
-              <div class="events-card-container">
-                <div class="row">
-                  <div class="col events-card p-0 mt-0">
-                    <div class="events-card-header">
-                      <div class="row">
-                        <div class="col">
-                          <div class="events-title">
-                            <span>EVENT DETAILS</span>
-                            <div class="events-span float-right">
-                              Add Details About The Event
+        </div> -->
+        <div class="row" *ngIf="isNewEvent">
+          <div class="col">
+            <div class="events-box">
+              <div class="row">
+                <div class="col">
+                  <div class="events-card-container">
+                    <div class="row">
+                      <div class="col-xl-6 col-lg-8 col-md-12 col-sm-12 events-card p-0 m-auto">
+                        <div class="events-card-header">
+                          <div class="row">
+                            <div class="col">
+                              <div class="events-title">
+                                <div class="events-name">EVENT DETAILS</div>
+                                <!-- <div class="events-span">Add Details About The Event</div> -->
+                                <div class="events-close" (click)="createEventDetails()"><i class="fa fa-times"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="events-card-body">
+                          <div class="row">
+                            <div class="col">
+                              <form class="ngform" [formGroup]="eventForm" (ngSubmit)="createEvent()" #inputToFocus>
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="events-add">
+                                      <span>Add Details About The Event</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="row">
+                                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group label-floating"
+                                          [ngClass]="{ 'is-fill': eventForm.controls['bride_name'].value, 'is-invalid': !eventForm.controls['bride_name'].valid}">
+                                          <input autocomplete="off" aria-autocomplete="none" autocomplete="off"
+                                            class="form-control" formControlName="bride_name" type="text" />
+                                          <label class="control-label">Bride Name</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group label-floating"
+                                          [ngClass]="{ 'is-fill': eventForm.controls['groom_name'].value, 'is-invalid': !eventForm.controls[ 'groom_name' ].valid}">
+                                          <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                            formControlName="groom_name" type="text" />
+                                          <label class="control-label">Groom Name</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group label-floating"
+                                          [ngClass]="{ 'is-fill': eventForm.controls['event_date'].value, 'is-invalid': !eventForm.controls['event_date'].valid}">
+                                          <input class="form-control" [min]="minDate" formControlName="event_date"
+                                            [owlDateTimeTrigger]="event_dt" [owlDateTime]="event_dt"
+                                            (dateTimeChange)="eventDateChange()">
+                                          <owl-date-time [pickerType]="'calendar'" #event_dt></owl-date-time>
+                                          <label class="control-label">Event Date</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group label-floating"
+                                          [ngClass]="{ 'is-fill': eventForm.controls['event_time'].value, 'is-invalid': !eventForm.controls['event_time'].valid}">
+                                          <input class="form-control" [(ngModel)]="event_time"
+                                            [ngModelOptions]="{standalone: true}" [owlDateTimeTrigger]="event_tt"
+                                            [owlDateTime]="event_tt" (dateTimeChange)="eventTimeChange()">
+                                          <owl-date-time [pickerType]="'timer'" [hour12Timer]="true" #event_tt>
+                                          </owl-date-time>
+                                          <label class="control-label">Event Time</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group label-floating"
+                                          [ngClass]="{ 'is-fill': eventForm.controls['title'].value, 'is-invalid': !eventForm.controls[ 'title' ].valid}">
+                                          <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                            formControlName="title" type="text" />
+                                          <label class="control-label">Title</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group label-floating"
+                                          [ngClass]="{ 'is-fill': eventForm.controls['venue'].value, 'is-invalid': !eventForm.controls[ 'venue' ].valid}">
+                                          <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                            formControlName="venue" type="text" />
+                                          <label class="control-label">Venue</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group label-floating"
+                                          [ngClass]="{ 'is-fill': eventForm.controls['address'].value, 'is-invalid': !eventForm.controls[ 'address' ].valid}">
+                                          <textarea autocomplete="off" aria-autocomplete="none" class="form-control"
+                                            formControlName="address" type="text"> </textarea>
+                                          <label class="control-label">Address</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group label-floating"
+                                          [ngClass]="{ 'is-fill': eventForm.controls['pin_code'].value, 'is-invalid': !eventForm.controls[ 'pin_code' ].valid}">
+                                          <input autocomplete="off" aria-autocomplete="none" class="form-control"
+                                            formControlName="pin_code" type="text" maxlength="6" minlength="6" />
+                                          <label class="control-label">Pin Code</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <div class="login-btn text-center">
+                                            <button class="btn btn-primary btn-round"
+                                              [disabled]="!eventForm.valid">Create
+                                              Event</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="events-card-body">
-                      <div class="row">
-                        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
-                          <form [formGroup]="eventForm" (ngSubmit)="addEventForm()">
-                            <div class="events-form">
-                              <div class="row">
-                                <div class="col">
-                                  <div class="events-add">
-                                    <span>Add Ceremony</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-mg-6 col-sm-12">
-                                  <div class="form-group label-floating"
-                                    [ngClass]="{ 'is-fill': eventForm.controls['title'].value, 'is-invalid': !eventForm.controls['title'].valid}">
-                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
-                                      formControlName="title" type="text" />
-                                    <label class="control-label">Event Name</label>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col">
-                                  <div class="form-group label-floating"
-                                    [ngClass]="{ 'is-fill': eventForm.controls['description'].value, 'is-invalid': !eventForm.controls['description'].valid}">
-                                    <textarea autocomplete="off" aria-autocomplete="none" class="form-control"
-                                      formControlName="description" type="text"></textarea>
-                                    <label class="control-label">Event Description</label>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-mg-6 col-sm-12">
-                                  <div class="form-group label-floating"
-                                    [ngClass]="{ 'is-fill': eventForm.controls['title'].value, 'is-invalid': !eventForm.controls['title'].valid}">
-                                    <!-- <input autocomplete="off" aria-autocomplete="none" class="form-control"
-                                      formControlName="title" type="text" /> -->
-                                    <input class="form-control" formControlName="title" [owlDateTimeTrigger]="dt1"
-                                      [owlDateTime]="dt1">
-                                    <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
-                                    <label class="control-label">Event Date</label>
-                                  </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-mg-6 col-sm-12">
-                                  <div class="form-group label-floating"
-                                    [ngClass]="{ 'is-fill': eventForm.controls['title'].value, 'is-invalid': !eventForm.controls['title'].valid}">
-                                    <input autocomplete="off" aria-autocomplete="none" class="form-control"
-                                      formControlName="title" type="text" />
-                                    <label class="control-label">Registry End Date</label>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col">
-                                  <div class="form-group text-right">
-                                    <button class="btn btn-primary btn-round">Save & Continue</button>
-                                  </div>
-                                </div>
-                              </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="!isNewEvent">
+          <div class="col">
+            <div class="event-card">
+              <div class="row">
+                <div class="col">
+                  <div class="event-card-body">
+                    <div class="row">
+                      <div class="col-xl-10 col-lg-10 col-md-10 col-xs-12 m-auto text-center">
+                        <div class="event-go-card" *ngFor="let eventName of eventList; let i = index">
+                          <div class="card-event-call" (click)="goToEventDetails(eventName)">
+                            <div class="event-go-title">
+                              <span class="title">{{eventName.title}}</span>
                             </div>
-                          </form>
+                            <div class="bar">
+                              <div class="emptybar"></div>
+                              <div class="filledbar"></div>
+                            </div>
+                            <div class="circle">
+                              <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="stroke" cx="60" cy="60" r="50" />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="event-go-card">
+                          <div class="card-event-call" (click)="createEventDetails()">
+                            <div class="event-go-title">
+                              <span class="title">ADD More Events</span>
+                            </div>
+                            <div class="bar">
+                              <div class="emptybar"></div>
+                              <div class="filledbar"></div>
+                            </div>
+                            <div class="circle">
+                              <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="stroke" cx="60" cy="60" r="50" />
+                              </svg>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

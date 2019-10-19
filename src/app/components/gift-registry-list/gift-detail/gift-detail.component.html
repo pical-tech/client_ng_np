@@ -11,32 +11,32 @@
                     <ul>
                       <li>
                         <a class="item-slide">
-                          <img src="assets/images/product_01.png">
+                          <img [src]="productDetail.image_url">
                         </a>
                       </li>
                       <li>
                         <a class="item-slide">
-                          <img src="assets/images/product_01.png">
+                          <img [src]="productDetail.image_url">
                         </a>
                       </li>
                       <li>
                         <a class="item-slide">
-                          <img src="assets/images/product_01.png">
+                          <img [src]="productDetail.image_url">
                         </a>
                       </li>
                       <li>
                         <a class="item-slide">
-                          <img src="assets/images/product_01.png">
+                          <img [src]="productDetail.image_url">
                         </a>
                       </li>
                       <li>
                         <a class="item-slide">
-                          <img src="assets/images/product_01.png">
+                          <img [src]="productDetail.image_url">
                         </a>
                       </li>
                       <li>
                         <a class="item-slide">
-                          <img src="assets/images/product_01.png">
+                          <img [src]="productDetail.image_url">
                         </a>
                       </li>
                     </ul>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="product-view">
                   <div class="product-conatiner">
-                    <img src="assets/images/product_01.png">
+                    <img [src]="productDetail.image_url">
                   </div>
                 </div>
               </div>
@@ -59,14 +59,14 @@
                       <div class="row">
                         <div class="col">
                           <div class="pd-head-title-t1">
-                            <span>Charbonnelet Walker</span>
+                            <span>{{productDetail.title}}</span>
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col">
                           <div class="pd-head-title-t2">
-                            <span>7 Piece Dark Marc</span>
+                            <span>{{productDetail.title}}</span>
                           </div>
                         </div>
                       </div>
@@ -87,10 +87,10 @@
                         <div class="col">
                           <div class="pd-price">
                             <div class="pd-price-span pd-price-p1">
-                              <span>₹246</span>
+                              <span>₹{{productDetail.price}}</span>
                             </div>
                             <div class="pd-price-span pd-price-p2">
-                              <span>₹999</span>
+                              <span>₹{{productDetail.mrp}}</span>
                             </div>
                             <div class="pd-price-span pd-price-p3">
                               <span>75% off</span>
@@ -122,13 +122,7 @@
                       <div class="row">
                         <div class="col">
                           <div class="pd-d-desc">
-                            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                              has been the industry’s standard dummy text ever since the 1500s, when an unknown printer
-                              took a galley of type and scrambled it to make a type specimen book. It has survived not
-                              only five centuries, but also the leap into electronic typesetting, remaining essentially
-                              unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                              Lorem but also the leap into electronic typesetting, remaining essentially unchanged. It
-                              was popularised in the 1960s with the release of Letraset sheets containing Lorem</span>
+                            <span>{{productDetail.description}}</span>
                           </div>
                         </div>
                       </div>
@@ -248,7 +242,7 @@
             </div>
           </div>
         </div>
-        <div class="row gr-items">
+        <div class="row gr-items" *ngIf="productDetail.suggested_items && productDetail.suggested_items.length > 0">
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
             <div class="gr-items-box">
               <div class="gr-items-card">

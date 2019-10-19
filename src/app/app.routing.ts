@@ -22,20 +22,25 @@ const routes: Routes = [
       { path: 'gift', component: GiftRegistryComponent },
       { path: 'gallery', component: GalleryComponent },
       { path: 'ceremony', component: CeremonyComponent },
-      { path: 'event', component: EventsComponent },
       { path: 'guest', component: RsvpComponent },
       {
         path: 'registry', component: GiftRegistryListComponent,
         children: [
           { path: '', component: GiftFormComponent },
           { path: 'product', component: ProductListComponent },
-          { path: 'gift-item', component: GiftDetailComponent }
+          { path: 'gift-item/:id', component: GiftDetailComponent }
         ]
       },
-      { path: '**', redirectTo: 'gallery', pathMatch: 'full' }
+      { path: '', redirectTo: '/event', pathMatch: 'full' }
     ]
   },
-  { path: '404', component: UserlayoutComponent, children: [] }
+  {
+    path: '', component: UserlayoutComponent, canActivateChild: [AuthGuard],
+    children: [
+      { path: 'event', component: EventsComponent },
+    ]
+  },
+  { path: '', redirectTo: '/event', pathMatch: 'full' }
 ];
 
 @NgModule({

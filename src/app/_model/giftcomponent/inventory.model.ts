@@ -1,3 +1,5 @@
+import { Inventory_brand, Inventory_category, Inventory_source } from './index';
+
 export class InventoryResponse {
   status: number;
   message: string;
@@ -32,42 +34,6 @@ export class InventoryResponseModel {
   inventory_brand: Inventory_brand;
   inventory_category: Inventory_category;
   inventory_source: Inventory_source;
-}
-
-export class Inventory_brand {
-  id: string;
-  name: string;
-  tags?: any;
-  description: string;
-  created_at: string;
-  updated_at: string;
-  deleted_at?: any;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export class Inventory_category {
-  id: string;
-  name: string;
-  tags?: any;
-  description: string;
-  created_at: string;
-  updated_at: string;
-  deleted_at?: any;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export class Inventory_source {
-  id: string;
-  patner_name: string;
-  partner_link: string;
-  api?: any;
-  created_at: string;
-  updated_at: string;
-  deleted_at?: any;
-  createdAt: string;
-  updatedAt: string;
 }
 
 

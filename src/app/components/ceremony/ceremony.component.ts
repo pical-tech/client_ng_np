@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChildren, NgZone, ViewChild, ElementRef, AfterVi
 import { DatePipe } from '@angular/common';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { CeremonyService, LoaderService } from './../../_services';
-import { CeremonyResponseModel } from './../../_model';
+import { Router } from '@angular/router';
+import { CeremonyService, LoaderService, GlobaleventifierService } from './../../_services';
+import { CeremonyResponseModel, EventResponseData } from './../../_model';
 declare const $: any;
 @Component({
   selector: 'app-ceremony',
@@ -16,15 +17,18 @@ export class CeremonyComponent implements OnInit {
   public ceremonyList: Array<CeremonyResponseModel>;
   public minDate = new Date();
   public ceremonyModel = new CeremonyResponseModel();
-  constructor(private ceremonyService: CeremonyService, private toastr: ToastrService, private loaderService: LoaderService) { }
+  public activeEvent = new EventResponseData();
+  constructor(private router: Router, private globaleventifier: GlobaleventifierService, private ceremonyService: CeremonyService, private toastr: ToastrService, private loaderService: LoaderService) {
+    this.activeEvent = this.globaleventifier.getActiveEvents() ? this.globaleventifier.getActiveEvents() as EventResponseData : null;
+  }
 
   ngOnInit() {
-    this.createCeremonyForm();
     this.getCeremony();
+    this.createCeremonyForm();
     this.createCeremonyEditForm();
   }
   getCeremony() {
-    this.ceremonyService.getCeremony().subscribe((response: any) => {
+    this.ceremonyService.getCeremony(this.activeEvent.id).subscribe((response: any) => {
       if (response && response.data && response.data.rows) {
         this.ceremonyList = response.data.rows;
       }
@@ -37,6 +41,15 @@ export class CeremonyComponent implements OnInit {
     this.ceremonyService.setCeremony(this.ceremonyForm.value).subscribe((response: any) => {
       if (response && !response.is_error && response.data) {
         this.loaderService.hide();
+        this.toastr.success('', 'Ceremony successfully created', { timeOut: 3000, progressBar: true, closeButton: true });
+        this.getCeremony();
+        this.ceremonyForm.patchValue({
+          title: null,
+          venue: null,
+          date_time: null,
+          description: null
+        });
+        $('#ceremonyModelPopUp').modal('hide');
       } else if (response && response.is_error && response.message) {
         if (response.message.length && response.message.length > 0) {
           for (const error of response.message) {
@@ -49,6 +62,7 @@ export class CeremonyComponent implements OnInit {
         this.loaderService.hide();
       }
     }, (error: any) => {
+      this.toastr.error('', 'something went wrong !!', { timeOut: 3000, progressBar: true, closeButton: true });
       this.loaderService.hide();
       console.log(error);
     });
@@ -85,6 +99,7 @@ export class CeremonyComponent implements OnInit {
         this.loaderService.hide();
       }
     }, (error: any) => {
+      this.toastr.error('', 'something went wrong !!', { timeOut: 3000, progressBar: true, closeButton: true });
       this.loaderService.hide();
       console.log(error);
     });
@@ -98,7 +113,7 @@ export class CeremonyComponent implements OnInit {
   }
   private createCeremonyForm() {
     this.ceremonyForm = new FormGroup({
-      event_id: new FormControl(12, [Validators.required]),
+      event_id: new FormControl(+this.activeEvent.id, [Validators.required]),
       title: new FormControl(null, [Validators.required]),
       venue: new FormControl(null, [Validators.required]),
       date_time: new FormControl(null, [Validators.required, Validators.pattern(/^((19|20)\d{2})\-(0[1-9]|1[0-2])\-(0[1-9]|1\d|2\d|3[01])$/)]),

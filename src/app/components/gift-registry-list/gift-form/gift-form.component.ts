@@ -94,7 +94,7 @@ export class GiftFormComponent implements OnInit, AfterViewInit {
     });
   }
   itemDetails(product) {
-    this.router.navigate(['/registry/gift-item']);
+    this.router.navigate(['/registry/gift-item/' + product.id]);
   }
   ngAfterViewInit() {
     setTimeout(() => {

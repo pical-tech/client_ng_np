@@ -17,4 +17,10 @@ export class GiftService extends BaseProviderService {
   addRegistry(registry) {
     return this.makePutCall(environment.API_URL + '/events', registry);
   }
+  getProductDetails(productId) {
+    return this.makeGetCall(environment.PICAL + '/inventory/' + productId);
+  }
+  getMyRegistry() {
+    return this.makeGetCall(environment.PICAL + '/giftRegistry');
+  }
 }

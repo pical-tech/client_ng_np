@@ -18,7 +18,7 @@
                   <div class="user-icon">
                     <img src="/assets/images/photo.png">
                   </div>
-                  <div class="user-name">John & Alexa</div>
+                  <div class="user-name">{{activeEvent.bride_name}} & {{activeEvent.groom_name}}</div>
                 </div>
               </div>
               <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12">
@@ -43,7 +43,7 @@
                                 <span>Gift Registry Start:</span>
                               </div>
                               <div class="detail-box-details">
-                                <span>1 May 2019</span>
+                                <span>{{activeEvent.registry_start_date ? (activeEvent.registry_start_date | date : 'dd-MM-yyyy'): '--'}}</span>
                               </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -51,7 +51,7 @@
                                 <span>Gift Registry End:</span>
                               </div>
                               <div class="detail-box-details">
-                                <span>30 May 2019</span>
+                                <span>{{activeEvent.registry_end_date ? (activeEvent.registry_end_date | date : 'dd-MM-yyyy'): '--'}}</span>
                               </div>
                             </div>
                           </div>
@@ -61,7 +61,7 @@
                                 <span>Gift Registry Owner:</span>
                               </div>
                               <div class="detail-box-details">
-                                <span>Shivani Gupta</span>
+                                <span>{{activeEvent.gift_registry_owner ? activeEvent.gift_registry_owner: '--'}}</span>
                               </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -69,7 +69,7 @@
                                 <span>Shipping:</span>
                               </div>
                               <div class="detail-box-details">
-                                <span>Taj Hotel, Mumbai</span>
+                                <span>{{activeEvent.shipping_address ? activeEvent.shipping_address : '--'}}</span>
                               </div>
                             </div>
                           </div>
@@ -81,9 +81,6 @@
                     <div class="row">
                       <div class="col">
                         <div class="gr-edit">
-                          <div class="gr-edit-button-group">
-                            <button class="btn btn-round btn-trans-black">Edit</button>
-                          </div>
                           <div class="gr-edit-button-group">
                             <button class="btn btn-round btn-trans-black" [routerLink]="['/registry/product']">View
                               Registry</button>
@@ -98,7 +95,7 @@
                             <span>Event Date:</span>
                           </div>
                           <div class="gr-et-date">
-                            <span>12 June 2019</span>
+                            <span>{{activeEvent.event_date ? (activeEvent.event_date | date : 'dd-MM-yyyy'): '--'}}</span>
                           </div>
                         </div>
                       </div>
