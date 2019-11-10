@@ -21,26 +21,31 @@
             text-align: center;
             .uploader {
               margin: 20px auto;
-              border: 1px solid $brand-primary;
               border-radius: 3px;
               display: inline-block;
               cursor: pointer;
+              position: relative;
               @include box-shadow-default();
               .uploader-icon {
                 display: block;
-                width: 80px;
-                height: 80px;
                 margin: 0 auto;
-                padding: 10px;
+                padding: 20px 10px;
+                border: 1px solid $brand-primary;
+                border-bottom: 0px;
                 span {
                   display: block;
+                  width: 40px;
+                  margin: 0 auto;
+                }
+                &.view-icon {
+                  background: $brand-primary;
                 }
               }
               .uploader-text {
                 display: block;
                 background: #4b4b4b;
                 color: #fff;
-                border-radius: 3px;
+                border-radius: 0px 0px 3px 3px;
                 span {
                   display: block;
                   font-size: 80%;
@@ -50,6 +55,20 @@
               }
               .image-input {
                 display: none;
+              }
+              .budge {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                background: rgb(247, 28, 28);
+                width: auto;
+                padding: 2px 9px;
+                color: rgb(255, 255, 255);
+                font-weight: 600;
+                border-radius: 14px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
               }
             }
           }
@@ -174,7 +193,7 @@
             overflow: hidden;
             position: relative;
             .gallery-thumbnil {
-              min-height: 300px;
+              min-height: 170px;
               justify-content: center;
               display: flex;
               align-items: center;

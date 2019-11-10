@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpInterceptor } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { PlyrModule } from 'ngx-plyr';
 
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
@@ -71,6 +72,7 @@ export const MY_MOMENT_FORMATS = {
     ReactiveFormsModule,
     FormsModule,
     NgSelectModule,
+    PlyrModule,
     RouterModule,
     ToastrModule.forRoot(),
     SharedModule,

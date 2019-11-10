@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding, HostListener, ViewChildren, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { GalleryService, GlobaleventifierService, LoaderService } from './../../_services';
 import { CeremonysModel, Photo_gallery, EventResponseData, EventFullResponseModel } from './../../_model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable, Observer } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import Plyr from 'plyr';
 import Swiper from 'swiper';
 import { Router } from '@angular/router';
+import { PlyrComponent } from 'ngx-plyr';
 declare const $: any;
 
 @Component({
@@ -28,15 +30,22 @@ export class GalleryComponent implements OnInit {
   public imageViewSlider = new Swiper();
   public activeTab = new CeremonysModel();
   public photoGallery: Array<Photo_gallery> = [];
+  public player: Plyr;
+  @ViewChild('vedioTag', { static: true }) vedioTag: ElementRef;
+  @ViewChild(PlyrComponent, { static: true }) plyr: PlyrComponent;
+  public options: Plyr.Options = {
+    captions: { active: true, update: true, language: 'en', volume: true },
+  };
+  // public dashjsDriver1 = new DashjsPlyrDriver(true);
   constructor(private galleryService: GalleryService, public sanitizer: DomSanitizer, private toastr: ToastrService, private globaleventifier: GlobaleventifierService, private router: Router, public loaderService: LoaderService) {
     this.activeEvent = this.globaleventifier.getActiveEvents() ? this.globaleventifier.getActiveEvents() as EventResponseData : null;
   }
 
   ngOnInit() {
+    this.getGallaryDetails();
     this.swiperSliderInit();
     this.loaderService.show();
     this.createCeremonyForm();
-    this.getGallaryDetails();
   }
   getGallaryDetails() {
     this.galleryService.getGallary(this.activeEvent.id).subscribe((response: EventFullResponseModel) => {
@@ -45,6 +54,7 @@ export class GalleryComponent implements OnInit {
         this.ceremonies = this.eventFullResponse.data.ceremonies as CeremonysModel[];
         if (this.ceremonies && this.ceremonies.length === 0) {
           this.toastr.info('And get back to gallery', 'Please add Ceremonies!!', { timeOut: 3000, progressBar: true, closeButton: true });
+          this.router.navigate(['/ceremony']);
         } else if (this.ceremonies && this.ceremonies.length > 0) {
           this.activeId = this.ceremonies[0].id;
           this.ceremonyForm.patchValue({
@@ -119,25 +129,32 @@ export class GalleryComponent implements OnInit {
         this.galleryService.postS3Media(formData).subscribe((response: any) => {
           if (response && !response.is_error && response.data && response.data.length && response.data.length > 0) {
             const medeaInfo = [];
-            response.data.forEach(item => {
-              medeaInfo.push({ medea_url: item, medea_type: this.ceremonyForm.controls.medea_type.value });
-            });
             const request = {
               event_id: +this.activeEvent.id,
               ceremony_id: +this.ceremonyForm.controls.ceremony_id.value,
-              medea_info: medeaInfo,
+              medea_info: [],
               is_public: true
             };
+            if (typeof response.data === 'string') {
+              request.medea_info.push({ medea_url: response.data, medea_type: this.ceremonyForm.controls.medea_type.value });
+            } else {
+              response.data.forEach(item => {
+                request.medea_info.push({ medea_url: item, medea_type: this.ceremonyForm.controls.medea_type.value });
+              });
+            }
             this.galleryService.postS3Url(request).subscribe((res: any) => {
               if (res && !res.is_error && res.data && res.data.length && res.data.length > 0) {
                 this.toastr.success('', 'Successfully uploaded', { timeOut: 3000, progressBar: true, closeButton: true });
+                this.imagePreview = [];
                 this.loaderService.hide();
                 this.getGallaryDetails();
               } else {
+                this.imagePreview = [];
                 this.loaderService.hide();
                 this.toastr.error('Please try after some time.', 'Something went wrong !!', { timeOut: 3000, progressBar: true, closeButton: true });
               }
             }, (error: any) => {
+              this.imagePreview = [];
               this.toastr.error('Please try after some time.', 'Something went wrong !!', { timeOut: 3000, progressBar: true, closeButton: true });
               this.loaderService.hide();
             });
@@ -195,6 +212,8 @@ export class GalleryComponent implements OnInit {
         this.loaderService.hide();
         $('#imageView').css('opacity', 1);
       }, 2000);
+    } else {
+      this.loaderService.hide();
     }
   }
   swiperSliderInit() {
@@ -244,4 +263,26 @@ export class GalleryComponent implements OnInit {
       medea_type: new FormControl('PHOTO', [Validators.required])
     });
   }
+  played(event: Plyr.PlyrEvent) {
+    console.log('played', event);
+  }
+  // @HostListener('click')
+  // onClick() {
+  //   const vv = document.getElementById('imageView');
+  //   const model = document.getElementsByClassName('modal-backdrop');
+  //   console.log(model);
+  //   if (model.length > 0 && vv.className.includes('show')) {
+  //     vv.addEventListener('click', (event: any) => {
+  //       if (event && event.path) {
+  //         for (const e of event.path) {
+  //           if (e.className && e.className.includes('swiper-container image-view-swiper swiper-container-initialized swiper-container-horizontal')) {
+  //             if (!!e.getElementsByTagName('video')[0].play()) {
+  //               e.getElementsByTagName('video')[0].pause();
+  //             }
+  //           }
+  //         }
+  //       }
+  //     });
+  //   }
+  // }
 }

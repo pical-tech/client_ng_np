@@ -256,6 +256,7 @@
         max-width: 320px;
         min-height: 200px;
         width: 100%;
+        margin: 0 auto;
       }
       .gr-items-description {
         margin-top: 10px;
@@ -436,7 +437,7 @@
         border-radius: 6px 6px 30px 30px;
         z-index: 10;
         height: calc(100% - 47px);
-        max-width: 270px;
+        max-width: inherit;
         .gr-items-icon {
         }
         .gr-items-description {
@@ -480,7 +481,7 @@
       }
       .gr-items-footer {
         display: flex;
-        max-width: 270px;
+        max-width: inherit;
         margin: -30px auto auto auto;
         border-radius: 0px 0px 6px 6px;
         position: relative;

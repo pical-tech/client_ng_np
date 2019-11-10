@@ -30,6 +30,7 @@
             "styles": [
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/plyr/dist/plyr.css",
               "src/assets/scss/client.scss"
             ],
             "scripts": [

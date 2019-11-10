@@ -5,7 +5,7 @@
         <div class="col-xl-5 col-md-5 col-sm-5 col-sm-12 p-0 login-box-icon">
         </div>
         <div class="col-xl-7 col-md-7 col-sm-7 col-sm-12 login-box-form">
-          <div class="row">
+          <!-- <div class="row">
             <div class="col">
               <div class="login-box-nav">
                 <div class="back-icon">
@@ -15,7 +15,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <div class="col">
               <div class="login-box-logo">
@@ -58,7 +58,10 @@
                                     [ngClass]="{ 'is-fill': loginForm.controls['username'].value, 'is-invalid': !loginForm.controls['username'].valid}">
                                     <input autocomplete="off" aria-autocomplete="none" class="form-control"
                                       formControlName="username" type="text" />
-                                    <label class="control-label">Email</label>
+                                    <label class="control-label">Username</label>
+                                    <div *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty && loginForm.controls['username'].touched)" class="error">
+                                      <div *ngIf="loginForm.controls['username'].errors.required && loginForm.controls['username'].dirty" class="error-message danger-text">Enter your Username</div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -69,6 +72,9 @@
                                     <input autocomplete="off" aria-autocomplete="none" class="form-control"
                                       formControlName="password" type="password" />
                                     <label class="control-label">password</label>
+                                    <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty && loginForm.controls['password'].touched)" class="error">
+                                      <div *ngIf="loginForm.controls['password'].errors.required && loginForm.controls['password'].dirty" class="error-message danger-text">Enter your Password</div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -76,7 +82,7 @@
                                 <div class="col">
                                   <div class="form-group">
                                     <div class="login-btn text-center">
-                                      <button class="btn btn-primary btn-round">LOGIN</button>
+                                      <button class="btn btn-primary btn-round" [disabled]="loginForm.invalid">LOGIN</button>
                                     </div>
                                   </div>
                                 </div>
@@ -92,7 +98,7 @@
                   <div class="row">
                     <div class="col">
                       <div class="login-form">
-                        <form class="ngform" [formGroup]="signUpForm" (ngSubmit)="userSignUp()" #inputToFocus>
+                        <form class="ngform" [formGroup]="signUpForm" (ngSubmit)="userSignUp()" #inputToFocus novalidate>
                           <div class="row">
                             <div class="col">
                               <div class="row">
@@ -102,6 +108,9 @@
                                     <input autocomplete="off" aria-autocomplete="none" autocomplete="off"
                                       class="form-control" formControlName="user_name" type="text" />
                                     <label class="control-label">User Name</label>
+                                    <div *ngIf="signUpForm.controls['user_name'].invalid && (signUpForm.controls['user_name'].dirty && signUpForm.controls['user_name'].touched)" class="error">
+                                      <div *ngIf="signUpForm.controls['user_name'].errors.required && signUpForm.controls['user_name'].dirty" class="error-message danger-text">Enter your Username</div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -112,6 +121,13 @@
                                     <input autocomplete="off" aria-autocomplete="none" class="form-control"
                                       formControlName="phone_no" type="text" maxlength="10" minlength="10" />
                                     <label class="control-label">Mobile No.</label>
+                                    <div *ngIf="signUpForm.controls['phone_no'].invalid && (signUpForm.controls['phone_no'].dirty && signUpForm.controls['phone_no'].touched)" class="error">
+                                      <div *ngIf="signUpForm.controls['phone_no'].errors.required && signUpForm.controls['phone_no'].dirty" class="error-message danger-text">Enter your Mobile No.</div>
+                                    </div>
+                                    <div *ngIf="signUpForm.controls['phone_no'].invalid && signUpForm.controls['phone_no'].value" class="error">
+                                      <div *ngIf="signUpForm.controls['phone_no'].errors.minlength" class="error-message danger-text">Mobile Number should be 10 Digit</div>
+                                      <div *ngIf="!signUpForm.controls['phone_no'].errors.minlength && signUpForm.controls['phone_no'].invalid" class="error-message danger-text">Invalid mobile number</div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -122,6 +138,12 @@
                                     <input autocomplete="off" aria-autocomplete="none" class="form-control"
                                       formControlName="email" type="text" />
                                     <label class="control-label">Email</label>
+                                    <div *ngIf="signUpForm.controls['email'].invalid && (signUpForm.controls['email'].dirty && signUpForm.controls['email'].touched)" class="error">
+                                      <div *ngIf="signUpForm.controls['email'].errors.required && signUpForm.controls['email'].dirty" class="error-message danger-text">Enter your email</div>
+                                    </div>
+                                    <div *ngIf="signUpForm.controls['email'].invalid && signUpForm.controls['email'].value" class="error">
+                                      <div *ngIf="signUpForm.controls['email'].value && !signUpForm.controls['email'].valid" class="error-message danger-text">Enter Valid formate</div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -141,7 +163,7 @@
                                     <div class="radio form-check">
                                       <label class="form-check-label">
                                         <input class="form-check-input" type="radio" formControlName="gender"
-                                          name="gender" value="FML"> FeMale
+                                          name="gender" value="FML"> Female
                                         <span class="circle">
                                           <span class="check"></span>
                                         </span>
@@ -157,6 +179,12 @@
                                     <input autocomplete="off" aria-autocomplete="none" class="form-control"
                                       formControlName="password" type="password" />
                                     <label class="control-label">Password</label>
+                                    <div *ngIf="signUpForm.controls['password'].invalid && (signUpForm.controls['password'].dirty && signUpForm.controls['password'].touched)" class="error">
+                                      <div *ngIf="signUpForm.controls['password'].errors.required && signUpForm.controls['password'].dirty" class="error-message danger-text">Enter your Password</div>
+                                    </div>
+                                    <div *ngIf="signUpForm.controls['password'].invalid && signUpForm.controls['password'].value" class="error">
+                                      <div *ngIf="signUpForm.controls['password'].errors.minlength" class="error-message danger-text">Password must be minimum 4 digit</div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -164,8 +192,7 @@
                                 <div class="col">
                                   <div class="form-group">
                                     <div class="login-btn text-center">
-                                      <button class="btn btn-primary btn-round" [disabled]="!signUpForm.valid">Sign
-                                        Up</button>
+                                      <button class="btn btn-primary btn-round" [disabled]="signUpForm.invalid">Sign Up</button>
                                     </div>
                                   </div>
                                 </div>

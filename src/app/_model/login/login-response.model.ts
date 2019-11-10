@@ -1,6 +1,6 @@
 export class LoginResponseModel {
   status: number;
-  message: string;
+  message: any;
   is_error: boolean;
   data: UserData;
 }
