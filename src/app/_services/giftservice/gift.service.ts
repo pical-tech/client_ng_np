@@ -12,15 +12,15 @@ export class GiftService extends BaseProviderService {
     super(http);
   }
   getInventoryList() {
-    return this.makeGetCall(environment.PICAL + '/inventory');
+    return this.makeGetCall(environment.API_URL + '/inventory');
   }
   addRegistry(registry) {
     return this.makePutCall(environment.API_URL + '/events', registry);
   }
   getProductDetails(productId) {
-    return this.makeGetCall(environment.PICAL + '/inventory/' + productId);
+    return this.makeGetCall(environment.API_URL + '/inventory/' + productId);
   }
   getMyRegistry() {
-    return this.makeGetCall(environment.PICAL + '/giftRegistry');
+    return this.makeGetCall(environment.API_URL + '/giftRegistry');
   }
 }

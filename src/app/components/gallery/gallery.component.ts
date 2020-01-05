@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding, HostListener, ViewChildren, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { GalleryService, GlobaleventifierService, LoaderService } from './../../_services';
-import { CeremonysModel, Photo_gallery, EventResponseData, EventFullResponseModel } from './../../_model';
+import { CeremonysModel, EventResponseData, GalleryResponseModel, GalleryData, GalleryListModel } from './../../_model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable, Observer } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -21,15 +21,14 @@ export class GalleryComponent implements OnInit {
   public activeId: string;
   public photoSwitch = true;
   public ceremonyForm: FormGroup;
-  public galleryListType: Array<Photo_gallery> = [];
+  public galleryListType: Array<GalleryListModel> = [];
   public imageLoader = true;
   public activeEvent = new EventResponseData();
-  public eventFullResponse = new EventFullResponseModel();
-  public ceremonies: Array<CeremonysModel> = [];
+  public ceremonies: Array<GalleryData> = [];
   public imagePreview: Array<any> = [];
   public imageViewSlider = new Swiper();
   public activeTab = new CeremonysModel();
-  public photoGallery: Array<Photo_gallery> = [];
+  public photoGallery: Array<GalleryListModel> = [];
   public player: Plyr;
   @ViewChild('vedioTag', { static: true }) vedioTag: ElementRef;
   @ViewChild(PlyrComponent, { static: true }) plyr: PlyrComponent;
@@ -48,19 +47,18 @@ export class GalleryComponent implements OnInit {
     this.createCeremonyForm();
   }
   getGallaryDetails() {
-    this.galleryService.getGallary(this.activeEvent.id).subscribe((response: EventFullResponseModel) => {
-      if (response && response.data && !response.is_error && response.data.id) {
-        this.eventFullResponse = response as EventFullResponseModel;
-        this.ceremonies = this.eventFullResponse.data.ceremonies as CeremonysModel[];
+    this.galleryService.getGallary(this.activeEvent.id).subscribe((response: GalleryResponseModel) => {
+      if (response && response.data && !response.is_error && response.data) {
+        this.ceremonies = response.data as GalleryData[];
         if (this.ceremonies && this.ceremonies.length === 0) {
           this.toastr.info('And get back to gallery', 'Please add Ceremonies!!', { timeOut: 3000, progressBar: true, closeButton: true });
           this.router.navigate(['/ceremony']);
         } else if (this.ceremonies && this.ceremonies.length > 0) {
-          this.activeId = this.ceremonies[0].id;
+          this.activeId = this.ceremonies[0].ceremony_id;
           this.ceremonyForm.patchValue({
             ceremony_id: this.activeId
           });
-          this.photoGallery = this.ceremonies[0].photo_galleries as Photo_gallery[];
+          this.photoGallery = this.ceremonies[0].gallery ? this.ceremonies[0].gallery : [] as GalleryListModel[];
           this.openCeremony(this.ceremonies[0]);
         }
         this.loaderService.hide();
@@ -77,12 +75,13 @@ export class GalleryComponent implements OnInit {
     });
   }
   openCeremony(ceremony) {
-    this.activeId = ceremony.id;
-    this.galleryListType = ceremony.photo_galleries as Photo_gallery[];
+    this.activeId = ceremony.ceremony_id;
+    this.galleryListType = ceremony.gallery as GalleryListModel[];
+
     this.getPhotoDetails('PHOTO');
   }
   getClassActive(ceremony) {
-    return this.activeId === ceremony.id;
+    return this.activeId === ceremony.ceremony_id;
   }
   getPhotoDetails(type) {
     this.imageLoader = true;
@@ -93,19 +92,19 @@ export class GalleryComponent implements OnInit {
       this.photoSwitch = false;
     }
     this.photoGallery = this.galleryListType.filter((item) => {
+      if (item.medea_type.toLowerCase() === 'photo') {
+        this.getImageSrc(item.medea_url).then((res: string) => {
+          item.medea_url = res;
+        });
+      }
       return item.medea_type.toLowerCase() === type.toLowerCase();
     });
-    setTimeout(() => {
-      this.imageLoader = false;
-    });
-  }
-  onImageLoad() {
-
   }
   getImageSrc(path: string): Promise<any> {
     return new Promise(async resolve => {
       const img = new Image();
       img.src = path;
+      this.imageLoader = false;
       img.onload = () => resolve(img.src);
       img.onerror = () => resolve('assets/images/placeholder.png');
     });

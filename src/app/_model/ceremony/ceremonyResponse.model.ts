@@ -1,4 +1,3 @@
-import { Image_interaction } from './../gallery/galleryResponse.model';
 
 export class CeremonyResponseModel {
   id: string;
@@ -33,5 +32,5 @@ export class PhotoGallery {
   createdAt: string;
   updatedAt: string;
   ceremony_id: string;
-  image_interactions: Image_interaction[];
+  image_interactions: any[];
 }

@@ -13,7 +13,7 @@ export class GalleryService extends BaseProviderService {
   }
 
   getGallary(eventId) {
-    return this.makeGetCall(environment.API_URL + '/events/' + eventId);
+    return this.makeGetCall(environment.API_URL + '/photoGallery?event_id=' + eventId);
   }
   postS3Media(file) {
     return this.makeUploadCall(environment.API_URL + '/imageUploadToS3/images/events', file);

@@ -48,7 +48,7 @@
                                       <div class="col">
                                         <div class="form-group label-floating"
                                           [ngClass]="{'is-fill': ceremonyForm.controls['ceremony_id'].value, 'is-invalid': !ceremonyForm.controls['ceremony_id'].valid}">
-                                          <ng-select [items]="ceremonies" [selectOnTab]="true" bindLabel="title"
+                                          <ng-select [items]="ceremonies" [selectOnTab]="true" bindLabel="ceremony_name"
                                             bindValue="id" autoCorrect="'on'" clearable='true'
                                             placeholder="Select Ceremony" formControlName='ceremony_id'></ng-select>
                                         </div>
@@ -104,7 +104,7 @@
               <ul class="nav nav-tabs row m-0">
                 <li *ngFor="let ceremony of ceremonies; index as i" class="col">
                   <a [ngClass]="{'active': getClassActive(ceremony)}" href="javascript:void(0)"
-                    (click)="openCeremony(ceremony)">{{ceremony.title}}</a>
+                    (click)="openCeremony(ceremony)">{{ceremony.ceremony_name}}</a>
                 </li>
               </ul>
             </div>
@@ -145,8 +145,9 @@
                               <img *ngIf="photoSwitch && item.medea_url" [src]="item.medea_url">
                               <!-- <video *ngIf="!photoSwitch && item.medea_url" [src]="item.medea_url" controls
                                 controlsList="nodownload"></video> -->
-                              <plyr *ngIf="!photoSwitch && item.medea_url" plyrTitle="Video 1" [plyrOptions]="options" [plyrPlaysInline]="true"
-                                [plyrSources]="item.medea_url" (plyrInit)="player = $event" (plyrPlay)="played($event)">
+                              <plyr *ngIf="!photoSwitch && item.medea_url" plyrTitle="Video 1" [plyrOptions]="options"
+                                [plyrPlaysInline]="true" [plyrSources]="item.medea_url" (plyrInit)="player = $event"
+                                (plyrPlay)="played($event)">
                               </plyr>
                               <div class="image-loader loader" [class.loader-hidden]="!imageLoader">
                                 <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66"
@@ -156,7 +157,8 @@
                                 </svg>
                               </div>
                             </div>
-                            <div *ngIf="photoSwitch && item.medea_url" class="blur-effect" [style.backgroundImage]="'url('+ item.medea_url +')'"></div>
+                            <div *ngIf="photoSwitch && item.medea_url" class="blur-effect"
+                              [style.backgroundImage]="'url('+ item.medea_url +')'"></div>
                           </div>
                           <div class="gallery-card-footer">
                             <div class="gallery-icon">

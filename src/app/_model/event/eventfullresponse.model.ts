@@ -1,5 +1,3 @@
-import { Image_interaction } from './../index';
-
 export class EventFullResponseModel {
   status: number;
   message: string;
@@ -85,7 +83,7 @@ export class Photo_gallery {
   createdAt: string;
   updatedAt: string;
   ceremony_id: string;
-  image_interactions: Image_interaction[];
+  image_interactions: any[];
 }
 
 export class CeremonysModel {
